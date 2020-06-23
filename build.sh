@@ -1,5 +1,5 @@
-cd /home/nebulasio/explorer/explorer-front 
-sudo git checkout develop
-sudo git pull origin develop
+cd /home/nebulasio/explorer-front 
+sudo git checkout master
+sudo git pull origin master
 sudo npm install
 sudo npm run build
