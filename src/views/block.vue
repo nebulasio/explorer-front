@@ -116,24 +116,8 @@
               {{ $t("blockTimeStamp") }}
             </td>
             <td class="font-color-000000">
-              <span>
-                {{ $t("transactionsTableAgoPrefix") }}
-              </span>
-              {{
-                timeConversion(
-                  Date.now() - block.localTimestamp + block.timeDiff
-                )
-              }}
-              <span>
-                {{ $t("transactionsTableAgoSuffix") }}
-              </span>
-              ({{
-                new Date(block.timestamp)
-                  .toString()
-                  .replace("GMT", "UTC")
-                  .replace(/\(.+\)/gi, "")
-              }}
-              | {{ block.timestamp }})
+              {{ updatedPass }}
+              ({{ blockTime }} | {{ block.timestamp }})
             </td>
           </tr>
           <tr>
@@ -183,8 +167,19 @@
               <a rel="noopener noreferrer" target="__blank" :href="nodeLink">
                 <div class="node">
                   <img :src="nodeAvatar" class="avatar" alt="Circle image" />
-                  <span class="monospace">{{ block.node.name }}</span>
+                  <span class="monospace">{{ block.node.info.name }}</span>
                 </div>
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="font-color-555555">
+              {{ $t("blockPollingCycleTitle") }}
+            </td>
+            <td>
+              <a rel="noopener noreferrer" target="__blank" :href="periodLink">
+                <span class="monospace">{{ block.node.period }}</span>
               </a>
             </td>
           </tr>
@@ -402,6 +397,8 @@
 var api = require("@/assets/api"),
   utility = require("@/assets/utility");
 
+import moment from "moment";
+
 module.exports = {
   components: {
     "vue-bread": require("@/components/vue-bread").default,
@@ -417,14 +414,13 @@ module.exports = {
       timestamp: Date.now()
     };
   },
-  async mounted() {
-    this.$root.showModalLoading = true;
-
+  mounted() {
     const blockHeight = this.$route.params.id;
-    // get block detail
-    this.block = await this.$api.block.getBlockDetail(blockHeight);
-
-    this.$root.showModalLoading = false;
+    this.loadData(blockHeight);
+  },
+  beforeRouteUpdate(to, from, next) {
+    this.loadData(to.params.id);
+    next();
   },
   computed: {
     urlChange() {
@@ -447,14 +443,33 @@ module.exports = {
         }
       );
     },
+    updatedPass() {
+      return this.block && moment(this.block.timestamp * 1000).fromNow();
+    },
+    blockTime() {
+      return this.block && moment(this.block.timestamp * 1000).format();
+    },
     nodeAvatar() {
-      return "https://node-image.nebulas.io/" + this.block.node.avatar;
+      return "https://node-image.nebulas.io/" + this.block.node.info.avatar;
     },
     nodeLink() {
-      return "https://node.nebulas.io/detail/" + this.block.node.id;
+      return "https://node.nebulas.io/detail/" + this.block.node.info.id;
+    },
+    periodLink() {
+      return "https://node.nebulas.io/mint";
     }
   },
   methods: {
+    async loadData(blockHeight) {
+      this.$root.showModalLoading = true;
+
+      // get block detail
+      this.block = await this.$api.block.getBlockDetail(blockHeight);
+
+      this.block.localTimestamp = Date.now();
+
+      this.$root.showModalLoading = false;
+    },
     showOrHideDynasty() {
       this.isShowDynasty = !this.isShowDynasty;
     },
