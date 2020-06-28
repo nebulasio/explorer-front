@@ -1,4 +1,5 @@
 import nebFoundationAddrs from "./neb_foundation_addr";
+import { i18nConfig } from "./i18n";
 
 const apiPrefixesConfig = {
   // http://192.168.1.168:8080/api/
@@ -22,12 +23,6 @@ const apiPrefixesConfig = {
     // url: "http://172.16.15.94:8080/api/", // xucun
     atp: "n1rR5uiy4vDUn7TPMAtJ8Y1Eo54K6EYvSJ6"
   }
-};
-
-const i18nConfig = {
-  locale: "en",
-  fallback_locale: "en",
-  supported_locale: "en,es"
 };
 
 export { apiPrefixesConfig, i18nConfig, nebFoundationAddrs };
