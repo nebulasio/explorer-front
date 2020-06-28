@@ -1,42 +1,53 @@
-<style>
-.vue-bread {
-  background-color: #f7f7f7;
-  overflow: auto;
-  padding: 10px 0;
-}
+<style lang="scss" scoped>
 .vue-block {
   width: 100%;
   background-color: white;
-}
-.vue-block .table tbody tr td {
-  border: 0;
-  vertical-align: middle;
-}
 
-.vue-block td .pagination {
-  margin: 0;
-  vertical-align: top;
-}
+  .vue-bread {
+    background-color: #f7f7f7;
+    overflow: auto;
+    padding: 10px 0;
+  }
 
-.vue-block tr > td:first-child {
-  padding-left: 24px;
-}
+  table tr td {
+    border: 0;
+    vertical-align: middle;
 
-.vue-block tr > td:first-child::after {
-  content: ":";
-}
+    .node {
+      img.avatar {
+        border-radius: 50% !important;
+        width: 32px;
+        height: 32px;
+        margin-right: 6px;
+      }
+    }
 
-.vue-block .card {
-  border: 0;
-}
+    .dynasty a {
+      margin-bottom: 10px;
+    }
 
-.vue-block .dynasty a {
-  margin-bottom: 10px;
+    .pagination {
+      margin: 0;
+      vertical-align: top;
+    }
+  }
+
+  tr > td:first-child {
+    padding-left: 24px;
+  }
+
+  tr > td:first-child::after {
+    content: ":";
+  }
+
+  .card {
+    border: 0;
+  }
 }
 </style>
 <template>
   <!-- https://etherscan.io/block/4951841 -->
-  <div class="vue-block " v-bind:triggerComputed="urlChange">
+  <div class="vue-block ">
     <div class="vue-bread">
       <div class="container">
         <div class="row align-items-center">
@@ -131,7 +142,7 @@
             </td>
             <td class="font-color-000000">
               <router-link v-bind:to="fragApi + '/txs?block=' + block.height">
-                <span>{{ block.blkSummary.txCnt }}</span>
+                <span>{{ block.tx_count }}</span>
               </router-link>
               tx {{ $t("blockTxInBlock") }}
             </td>
@@ -140,15 +151,15 @@
             <td class="font-color-555555">
               {{ $t("blockHashTitle") }}
             </td>
-            <td class="font-color-000000 monospace">{{ block.hash }}</td>
+            <td class="font-color-000000 monospace">{{ block.block_hash }}</td>
           </tr>
           <tr>
             <td class="font-color-555555">
               {{ $t("blockParentHashTitle") }}
             </td>
             <td>
-              <router-link v-bind:to="fragApi + '/block/' + block.parentHash">
-                <span class="monospace">{{ block.parentHash }}</span>
+              <router-link v-bind:to="fragApi + '/block/' + block.parent_hash">
+                <span class="monospace">{{ block.parent_hash }}</span>
               </router-link>
             </td>
           </tr>
@@ -157,12 +168,27 @@
               {{ $t("blockMintedTitle") }}
             </td>
             <td>
-              <router-link v-bind:to="fragApi + '/address/' + block.miner.hash">
-                <span class="monospace">{{ block.miner.hash }}</span>
+              <router-link v-bind:to="fragApi + '/address/' + block.miner">
+                <span class="monospace">{{ block.miner }}</span>
               </router-link>
               <span v-if="block.miner.alias"> | {{ block.miner.alias }}</span>
             </td>
           </tr>
+
+          <tr>
+            <td class="font-color-555555">
+              {{ $t("blockNodeTitle") }}
+            </td>
+            <td>
+              <a rel="noopener noreferrer" target="__blank" :href="nodeLink">
+                <div class="node">
+                  <img :src="nodeAvatar" class="avatar" alt="Circle image" />
+                  <span class="monospace">{{ block.node.name }}</span>
+                </div>
+              </a>
+            </td>
+          </tr>
+
           <tr>
             <td class="font-color-555555">
               {{ $t("blockCoinbaseTitle") }}
@@ -224,7 +250,7 @@
               {{ $t("blockGasReward") }}
             </td>
             <td class="font-color-000000">
-              {{ toWei(block.blkSummary.gasReward) }}
+              {{ toWei(block.gas_info.gas_reward) }}
             </td>
           </tr>
         </table>
@@ -289,30 +315,30 @@
           {{ $t("blockTransactionsTitle") }}
           <div class="detail">
             <router-link v-bind:to="fragApi + '/txs?block=' + block.height">
-              <span>{{ block.blkSummary.txCnt }}</span>
+              <span>{{ block.tx_count }}</span>
             </router-link>
             {{ $t("blockTxInThisBlock") }}
           </div>
         </div>
         <div>
           Hash:
-          <div class="detail monospace">{{ block.hash }}</div>
+          <div class="detail monospace">{{ block.block_hash }}</div>
         </div>
         <div>
           {{ $t("blockParentHashTitle") }}
           <div class="detail">
-            <router-link v-bind:to="fragApi + '/block/' + block.parentHash">
-              <span class="monospace">{{ block.parentHash }}</span>
+            <router-link v-bind:to="fragApi + '/block/' + block.parent_hash">
+              <span class="monospace">{{ block.parent_hash }}</span>
             </router-link>
           </div>
         </div>
         <div>
           {{ $t("blockMintedTitle") }}
           <div class="detail">
-            <router-link v-bind:to="fragApi + '/address/' + block.miner.hash">
-              <span class="monospace">{{ block.miner.hash }}</span>
+            <router-link v-bind:to="fragApi + '/address/' + block.miner">
+              <span class="monospace">{{ block.miner }}</span>
             </router-link>
-            <span v-if="block.miner.alias"> | {{ block.miner.alias }}</span>
+            <!-- <span v-if="block.miner.alias"> | {{ block.miner.alias }}</span> -->
           </div>
         </div>
         <div>
@@ -366,15 +392,13 @@
         </div>
         <div>
           {{ $t("blockGasRewardTitle") }}
-          <div class="detail">{{ toWei(block.blkSummary.gasReward) }}</div>
+          <div class="detail">{{ toWei(block.gas_info.gas_reward) }}</div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-// import { EventBus } from "../events.js";
-// import { jsonStrings } from "../l10nstrings.js";
 var api = require("@/assets/api"),
   utility = require("@/assets/utility");
 
@@ -382,6 +406,25 @@ module.exports = {
   components: {
     "vue-bread": require("@/components/vue-bread").default,
     "vue-tab-buttons": require("@/components/vue-tab-buttons").default
+  },
+  data() {
+    return {
+      block: null,
+      fragApi: this.$route.params.api ? "/" + this.$route.params.api : "",
+      tab: 0,
+      tabButtons: ["Overview"],
+      isShowDynasty: false,
+      timestamp: Date.now()
+    };
+  },
+  async mounted() {
+    this.$root.showModalLoading = true;
+
+    const blockHeight = this.$route.params.id;
+    // get block detail
+    this.block = await this.$api.block.getBlockDetail(blockHeight);
+
+    this.$root.showModalLoading = false;
   },
   computed: {
     urlChange() {
@@ -403,59 +446,15 @@ module.exports = {
           );
         }
       );
+    },
+    nodeAvatar() {
+      return "https://node-image.nebulas.io/" + this.block.node.avatar;
+    },
+    nodeLink() {
+      return "https://node.nebulas.io/detail/" + this.block.node.id;
     }
   },
   methods: {
-    // removeTempInterval() {
-    //   clearInterval(this.tempInterval);
-    // },
-    // checkStaticTranslations() {
-    //   // Unique elements, identified by id attr
-    //   var myLocalizableElements = document.getElementsByClassName(
-    //     "blocklocalizable"
-    //   );
-    //   var totalElements = myLocalizableElements.length;
-    //   var i;
-    //   for (i = 0; i < totalElements; i++) {
-    //     var elementId = myLocalizableElements[i].getAttribute("id");
-    //     if (myLocalizableElements[i].getAttribute("localize")) {
-    //       var elementAttribute = myLocalizableElements[i].getAttribute(
-    //         "localize"
-    //       );
-    //       myLocalizableElements[i].setAttribute(
-    //         elementAttribute,
-    //         jsonStrings[this.$selectedLanguage][elementId]
-    //       );
-    //     } else {
-    //       myLocalizableElements[i].innerText =
-    //         jsonStrings[this.$selectedLanguage][elementId];
-    //     }
-    //   }
-    // },
-    // checkDynamicTranslations() {
-    //   // Multiple elements, identified with name attr
-    //   var myMultiLocalizableElements = document.getElementsByClassName(
-    //     "blockmultilocalizable"
-    //   );
-    //   var totalElements = myMultiLocalizableElements.length;
-    //   var i;
-    //   for (i = 0; i < totalElements; i++) {
-    //     var elementName = myMultiLocalizableElements[i].getAttribute("name");
-    //     if (myMultiLocalizableElements[i].getAttribute("localize")) {
-    //       var elementAttribute = myMultiLocalizableElements[i].getAttribute(
-    //         "localize"
-    //       );
-    //       myMultiLocalizableElements[i].setAttribute(
-    //         elementAttribute,
-    //         jsonStrings[this.$selectedLanguage][elementName]
-    //       );
-    //     } else {
-    //       myMultiLocalizableElements[i].innerText =
-    //         jsonStrings[this.$selectedLanguage][elementName];
-    //     }
-    //   }
-    //   // Other specific methods for unique elements.
-    // },
     showOrHideDynasty() {
       this.isShowDynasty = !this.isShowDynasty;
     },
@@ -468,31 +467,6 @@ module.exports = {
     toWei(n) {
       return utility.toWei(n);
     }
-  },
-  data() {
-    return {
-      block: null,
-      fragApi: this.$route.params.api ? "/" + this.$route.params.api : "",
-      tab: 0,
-      tabButtons: ["Overview"],
-      isShowDynasty: false,
-      timestamp: Date.now()
-    };
   }
-  // mounted() {
-  //   EventBus.$on("changeLanguage", foo => {
-  //     this.checkStaticTranslations();
-  //   });
-  //   if (typeof this.$selectedLanguage != "undefined") {
-  //     this.checkStaticTranslations();
-  //   }
-  //   this.translationsInterval = setInterval(() => {
-  //     this.checkDynamicTranslations();
-  //   }, 1000);
-  //   this.tempInterval = setInterval(() => {
-  //     this.checkStaticTranslations();
-  //     this.removeTempInterval();
-  //   }, 1500);
-  // }
 };
 </script>

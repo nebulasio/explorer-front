@@ -111,7 +111,7 @@ export function get(url, params) {
 
   return new Promise((resolve, reject) => {
     axios
-      .get(baseURL + url, params)
+      .get(baseURL + url, { params })
       .then(res => {
         // get data success
         if (res.data.code === 0) {

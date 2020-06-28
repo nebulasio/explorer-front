@@ -102,6 +102,7 @@
   "blockHashTitle": "Hash", 
   "blockParentHashTitle": "Hash padre", 
   "blockMintedTitle": "Creado", 
+  "blockNodeTitle": "Node", 
   "blockCoinbaseTitle": "Coinbase", 
   "blockDinastyTitle": "Dinastía", 
   "blockShowDinasty": "Mostrar dinastía", 
