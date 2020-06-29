@@ -155,11 +155,10 @@
               <router-link v-bind:to="fragApi + '/address/' + block.miner">
                 <span class="monospace">{{ block.miner }}</span>
               </router-link>
-              <span v-if="block.miner.alias"> | {{ block.miner.alias }}</span>
             </td>
           </tr>
 
-          <tr>
+          <tr v-if="!isEmptyObj(block.node)">
             <td class="font-color-555555">
               {{ $t("blockNodeTitle") }}
             </td>
@@ -173,7 +172,7 @@
             </td>
           </tr>
 
-          <tr>
+          <tr v-if="!isEmptyObj(block.node)">
             <td class="font-color-555555">
               {{ $t("blockPollingCycleTitle") }}
             </td>
@@ -398,6 +397,7 @@ var api = require("@/assets/api"),
   utility = require("@/assets/utility");
 
 import moment from "moment";
+import _ from "lodash";
 
 module.exports = {
   components: {
@@ -481,6 +481,9 @@ module.exports = {
     },
     toWei(n) {
       return utility.toWei(n);
+    },
+    isEmptyObj(obj) {
+      return _.isEmpty(obj);
     }
   }
 };

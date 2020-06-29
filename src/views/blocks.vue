@@ -1,20 +1,34 @@
-<style>
-.vue-bread {
-  background-color: #f7f7f7;
-  overflow: auto;
-  padding: 10px 0;
-}
+<style lang="scss" scoped>
 .vue-blocks {
   background-color: white;
-}
 
-.vue-blocks .block {
-  margin-right: 8px;
-}
+  .vue-bread {
+    background-color: #f7f7f7;
+    overflow: auto;
+    padding: 10px 0;
+  }
 
-@media (max-width: 767.98px) {
-  .vue-blocks .title {
-    font-size: 20px;
+  .block {
+    margin-right: 8px;
+  }
+
+  table tr td {
+    .node {
+      // padding-left: 30px;
+
+      img.avatar {
+        border-radius: 50% !important;
+        width: 24px;
+        height: 24px;
+        margin-right: 6px;
+      }
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .title {
+      font-size: 20px;
+    }
   }
 }
 </style>
@@ -58,9 +72,18 @@
             <th style="padding-left: 20px">
               {{ $t("blocksTableTxn") }}
             </th>
-            <th style="padding-left: 30px">
+            <!-- <th style="padding-left: 30px">
               {{ $t("blocksTableMinted") }}
+            </th> -->
+
+            <th style="padding-left: 30px">
+              {{ $t("blockNodeTitle") }}({{ $t("blocksTableMinted") }})
             </th>
+
+            <th style="padding-left: 30px">
+              {{ $t("blockPollingCycleTitle") }}
+            </th>
+
             <th class="text-right">
               {{ $t("blocksTableGasReward") }}
             </th>
@@ -82,56 +105,80 @@
             <td>
               <div>
                 <div class="font-color-000000 font-14">
-                  <span
-                    name="transactionsTableAgoPrefix"
-                    class="blocksmultilocalizable"
-                  ></span>
-                  {{ timeConversion(o.timeDiff) }}
-                  <span
-                    name="transactionsTableAgoSuffix"
-                    class="blocksmultilocalizable"
-                  ></span>
+                  {{ updatedPass(o.timestamp) }}
                 </div>
-                <div class="down-arrow-tip" style="display: none;">
-                  {{
-                    new Date(o.timestamp)
-                      .toString()
-                      .replace("GMT", "UTC")
-                      .replace(/\(.+\)/gi, "")
-                  }}
-                  | {{ o.timestamp }}
+                <div>
+                  {{ blockTime(o.timestamp) }}
                 </div>
               </div>
             </td>
             <td style="padding-left: 20px">
               <router-link v-bind:to="fragApi + '/txs?block=' + o.height">
-                <span class="font-14">{{ numberAddComma(o.txnCnt) }}</span>
+                <span class="font-14">{{ numberAddComma(o.tx_count) }}</span>
               </router-link>
             </td>
-            <td style="padding-left: 30px">
-              <router-link v-bind:to="fragApi + '/address/' + o.miner.hash">
+            <!-- <td style="padding-left: 30px">
+              <router-link v-bind:to="fragApi + '/address/' + o.miner">
                 <vue-blockies
                   class="d-inline"
-                  v-bind:address="o.miner.alias || o.miner.hash"
+                  v-bind:address="o.miner"
                 ></vue-blockies>
-                <span class="font-14 monospace">{{
-                  o.miner.alias || o.miner.hash
-                }}</span>
+                <span class="font-14 monospace">{{ o.miner }}</span>
+              </router-link>
+            </td> -->
+
+            <td style="padding-left: 30px">
+              <a
+                v-if="!isEmptyObj(o.node)"
+                rel="noopener noreferrer"
+                target="__blank"
+                :href="nodeLink(o.node)"
+              >
+                <div class="node">
+                  <img
+                    :src="nodeAvatar(o.node)"
+                    class="avatar"
+                    alt="Circle image"
+                  />
+                  <span class="monospace">{{ o.node.info.name }}</span>
+                </div>
+              </a>
+
+              <router-link v-else v-bind:to="fragApi + '/address/' + o.miner">
+                <vue-blockies
+                  class="d-inline"
+                  v-bind:address="o.miner"
+                ></vue-blockies>
+                <span class="font-14 monospace">{{ o.miner }}</span>
               </router-link>
             </td>
+
+            <td class="text-right">
+              <a
+                v-if="!isEmptyObj(o.node)"
+                rel="noopener noreferrer"
+                target="__blank"
+                :href="periodLink()"
+              >
+                <span class="monospace">{{ o.node.period }}</span>
+              </a>
+
+              <span v-else>-</span>
+            </td>
+
             <td class="text-right">
               <span class="font-14 font-color-555555">{{
-                toWei(o.gasReward)
+                toWei(o.gas_info.gas_reward)
               }}</span>
             </td>
             <td class="text-right">
               <span class="font-14 font-color-000000">{{
-                numberAddComma(o.gasLimit)
+                numberAddComma(o.gas_info.gas_limit)
               }}</span>
             </td>
             <td class="text-right">
               <span class="font-14 font-color-555555">{{
-                toWei(o.avgGasPrice)
+                toWei(o.gas_info.avg_gas_price)
               }}</span>
             </td>
             <td></td>
@@ -152,10 +199,10 @@
   </div>
 </template>
 <script>
-// import { EventBus } from "../events.js";
-// import { jsonStrings } from "../l10nstrings.js";
 var api = require("@/assets/api"),
   utility = require("@/assets/utility");
+import moment from "moment";
+import _ from "lodash";
 
 module.exports = {
   components: {
@@ -174,58 +221,11 @@ module.exports = {
       totalPage: 0
     };
   },
+  mounted() {
+    this.nthPage();
+  },
   methods: {
-    //     removeTempInterval() {
-    //       clearInterval(this.tempInterval);
-    //     },
-    //     checkStaticTranslations() {
-    //       // Unique elements, identified by id attr
-    //       var myLocalizableElements = document.getElementsByClassName(
-    //         "blockslocalizable"
-    //       );
-    //       var totalElements = myLocalizableElements.length;
-    //       var i;
-    //       for (i = 0; i < totalElements; i++) {
-    //         var elementId = myLocalizableElements[i].getAttribute("id");
-    //         if (myLocalizableElements[i].getAttribute("localize")) {
-    //           var elementAttribute = myLocalizableElements[i].getAttribute(
-    //             "localize"
-    //           );
-    //           myLocalizableElements[i].setAttribute(
-    //             elementAttribute,
-    //             jsonStrings[this.$selectedLanguage][elementId]
-    //           );
-    //         } else {
-    //           myLocalizableElements[i].innerText =
-    //             jsonStrings[this.$selectedLanguage][elementId];
-    //         }
-    //       }
-    //     },
-    // checkDynamicTranslations() {
-    //   // Multiple elements, identified with name attr
-    //   var myMultiLocalizableElements = document.getElementsByClassName(
-    //     "blocksmultilocalizable"
-    //   );
-    //   var totalElements = myMultiLocalizableElements.length;
-    //   var i;
-    //   for (i = 0; i < totalElements; i++) {
-    //     var elementName = myMultiLocalizableElements[i].getAttribute("name");
-    //     if (myMultiLocalizableElements[i].getAttribute("localize")) {
-    //       var elementAttribute = myMultiLocalizableElements[i].getAttribute(
-    //         "localize"
-    //       );
-    //       myMultiLocalizableElements[i].setAttribute(
-    //         elementAttribute,
-    //         jsonStrings[this.$selectedLanguage][elementName]
-    //       );
-    //     } else {
-    //       myMultiLocalizableElements[i].innerText =
-    //         jsonStrings[this.$selectedLanguage][elementName];
-    //     }
-    //   }
-    //   // Other specific methods for unique elements.
-    // },
-    nthPage() {
+    async nthPage() {
       var p = this.$route.query.p || 1;
 
       if (p == this.currentPage)
@@ -233,31 +233,22 @@ module.exports = {
       else {
         this.$root.showModalLoading = true;
 
-        api.getBlocks(
-          { p },
-          o => {
-            this.$root.showModalLoading = false;
-            this.arr = o.data;
-            this.currentPage = o.page;
-            this.totalPage = o.totalPage;
-            this.totalBlocks = o.totalCount;
+        const res = await this.$api.block.getBlocks(p);
+        this.arr = res.list;
 
-            if (this.arr.length) {
-              this.heightFrom = this.arr[0].height;
-              this.heightTo = this.arr[this.arr.length - 1].height;
-            } else {
-              this.heightFrom = 0;
-              this.heightTo = 0;
-            }
-          },
-          xhr => {
-            this.$root.showModalLoading = false;
-            this.$router.replace(
-              (this.$route.params.api ? "/" + this.$route.params.api : "") +
-                "/404"
-            );
-          }
-        );
+        this.$root.showModalLoading = false;
+
+        this.currentPage = res.current_page;
+        this.totalPage = res.total_page;
+        this.totalBlocks = res.count;
+
+        if (this.arr.length) {
+          this.heightFrom = this.arr[0].height;
+          this.heightTo = this.arr[this.arr.length - 1].height;
+        } else {
+          this.heightFrom = 0;
+          this.heightTo = 0;
+        }
       }
     },
     numberAddComma(n) {
@@ -298,24 +289,27 @@ module.exports = {
     },
     toWei(n) {
       return utility.toWei(n);
+    },
+    updatedPass(timestamp) {
+      return this.arr && moment(timestamp * 1000).fromNow();
+    },
+    blockTime(timestamp) {
+      return this.arr && moment(timestamp * 1000).format();
+    },
+    nodeAvatar(node) {
+      return "https://node-image.nebulas.io/" + node.info.avatar;
+    },
+    nodeLink(node) {
+      return "https://node.nebulas.io/detail/" + node.info.id;
+    },
+    periodLink() {
+      return "https://node.nebulas.io/mint";
+    },
+    isEmptyObj(obj) {
+      return _.isEmpty(obj);
     }
   },
-  mounted() {
-    // EventBus.$on("changeLanguage", foo => {
-    //   this.checkStaticTranslations();
-    // });
-    // if (typeof this.$selectedLanguage != "undefined") {
-    //   this.checkStaticTranslations();
-    // }
-    // this.translationsInterval = setInterval(() => {
-    //   this.checkDynamicTranslations();
-    // }, 1000);
-    // this.tempInterval = setInterval(() => {
-    //   this.checkStaticTranslations();
-    //   this.removeTempInterval();
-    // }, 1500);
-    this.nthPage();
-  },
+
   watch: {
     $route() {
       this.nthPage();

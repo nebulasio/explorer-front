@@ -1,8 +1,10 @@
 import { get } from "@/utils/http";
 
 const block = {
-  getBlocks() {
-    return get("explorer/block/list");
+  getBlocks(page) {
+    return get("explorer/block/list", {
+      page
+    });
   },
   getBlockDetail(param) {
     return get("block/detail", {
