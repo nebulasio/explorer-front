@@ -498,7 +498,7 @@
           </tr>
           <tr>
             <td class="font-16 font-color-555555" style="padding-left: 24px;">
-              {{ $t("txlocalizable") }}
+              {{ $t("txNonce") }}
             </td>
             <td class="font-color-000000 font-16">{{ tx.nonce }}</td>
           </tr>
