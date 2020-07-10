@@ -1,7 +1,8 @@
 {
   "Languages": "Idiomas",
-  "English": "Inglés",
+  "English": "English",
   "Spanish": "Español",
+  "Chinese": "中文",
   "headerToggleNavigation": "Cambiar navegación", 
   "headerSearchTool": "Buscar por dirección, txhash, bloque o token", 
   "headerHomeTitle": "Inicio", 
@@ -102,8 +103,6 @@
   "blockHashTitle": "Hash", 
   "blockParentHashTitle": "Hash padre", 
   "blockMintedTitle": "Creado", 
-  "blockNodeTitle": "Node", 
-  "blockPollingCycleTitle": "Polling Cycle", 
   "blockCoinbaseTitle": "Coinbase", 
   "blockDinastyTitle": "Dinastía", 
   "blockShowDinasty": "Mostrar dinastía", 
