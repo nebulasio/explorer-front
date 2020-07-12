@@ -81,7 +81,7 @@
             </th>
 
             <th style="padding-left: 30px">
-              {{ $t("blockPollingCycleTitle") }}
+              {{ $t("dashboardPollingCycle") }}
             </th>
 
             <th class="text-right">

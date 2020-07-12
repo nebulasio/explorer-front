@@ -108,6 +108,7 @@
   "blocksTableGasLimit": "Límite de gas", 
   "blocksTableAverageGasPrice": "Precio gas prom.", 
   "blockTitle": "Bloque", 
+  "blockNodeTitle":"Node",
   "blockOverview": "Resumen", 
   "blockHeight": "Altura", 
   "blockPageNavigation": "Navegación", 
@@ -464,5 +465,7 @@
   "totalMintedNax":"Total Minted NAX",
   "nextMintBlock":"Next Mint Block",
   "timeLeft":"TimeLeft",
-  "distributionNaxNow":"Distributing NAX Now"
+  "distributionNaxNow":"Distributing NAX Now",
+  "address":"Address",
+  "addresses":"Addresses"
 }

@@ -99,6 +99,7 @@
   "pendingTxNoTxFound": "No pending transactions found", 
   "pendingTxSmartContract": "Smart Contract", 
   "blocksTitle": "Blocks", 
+  "blockNodeTitle":"Node",
   "blocksFound": "blocks found", 
   "blocksLatestFound": "showing the last 500 records", 
   "blocksTableHeight": "Height", 
@@ -462,5 +463,24 @@
   "totalMintedNax":"Total Minted NAX",
   "nextMintBlock":"Next Mint Block",
   "timeLeft":"TimeLeft",
-  "distributionNaxNow":"Distributing NAX Now"
+  "distributionNaxNow":"Distributing NAX Now",
+
+  "nasDistribution":"NAS Distribution",
+  "restCirculating":"Rest in circulatiing",
+  "NasReservedForCommunity":"Nas Reserved for Community Ecosystem(Burned)",
+  "DposAdjustment":"DPoS adjustment(Burned)",
+  "NasReservedForTeam":"Nas Reserved for the Nebulas Team",
+  "GoNebulasFund":"Go Nebulas Fund",
+  "NasReservedForSwap":"NAS Reserved for the ERC-20 token swap",
+  "burnedAddress":"Burned Address",
+  "holdByFoundation":"Hold by Nebulas Foundation",
+  "unreleased":"unreleased",
+  "inCirculating":"In Circulating",
+  "locked":"Locked",
+  "burned":"Burned",
+  "nasDistributionPercentTip":"Nas Amount / Nas Total Supply",
+  "info":"Info",
+  "status":"Status",
+  "address":"Address",
+  "addresses":"Addresses"
 }
