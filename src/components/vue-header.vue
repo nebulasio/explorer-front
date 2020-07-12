@@ -334,7 +334,7 @@ input::placeholder {
                           class="dropdown-item"
                           v-bind:to="linkUrl('/contracts')"
                         >
-                          Smart Contract
+                          {{ $t("contractsTitle") }}
                         </router-link>
                       </li>
                     </ul>

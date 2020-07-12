@@ -367,6 +367,8 @@
   "contractsTableDateCreated": "Fecha de creación", 
   "contractsTypeContract": "Contrato", 
   "contractsTypeTokenContract": "Contrato de token", 
+  "contractsType":"Type",
+
   "dipTitle": "Premios del Protocolo Nativo de Incentivos a Desarrolladores", 
   "dipSubtitle": "*El ranking DIP se actualiza automáticamente cada lunes.", 
   "dipRewardsText": "contratos obtuvieron una recompensa por un total de", 
@@ -389,6 +391,7 @@
   "contracttxsPendingText": "pendiente", 
   "contracttxsTimeStampPrefix": "hace ", 
   "contracttxsTimeStampSuffix": "", 
+  
   "nrc20Title": "Transacciones de token NRC20", 
   "nrc20Subtitle": "transacciones halladas", 
   "nrc20TableTxHash": "Hash tx", 
@@ -467,5 +470,8 @@
   "timeLeft":"TimeLeft",
   "distributionNaxNow":"Distributing NAX Now",
   "address":"Address",
-  "addresses":"Addresses"
+  "addresses":"Addresses",
+
+  "transfers":"Transfers",
+  "holders":"Holders"
 }

@@ -293,6 +293,7 @@
   "txArgs": "Args:", 
   "txPayloadData": "Payload Data:", 
   "txViewAll": "View All", 
+
   "contractOverview": "Overview", 
   "contractTotalSupplyTitle": "Total Supply:", 
   "contractTotalSupplyTitle2": "Total Supply:", 
@@ -338,6 +339,9 @@
   "contractTableAddress": "Address", 
   "contractTableQuantity": "Quantity", 
   "contractTablePercentage": "Percentage", 
+  "contractsType":"Type",
+
+
   "home24HourChange": "24-hour change:", 
   "home24HourVolume": "24-hour volume:", 
   "homeMarketCapTitle": "Market Cap:", 
@@ -482,5 +486,8 @@
   "info":"Info",
   "status":"Status",
   "address":"Address",
-  "addresses":"Addresses"
+  "addresses":"Addresses",
+
+  "transfers":"Transfers",
+  "holders":"Holders"
 }

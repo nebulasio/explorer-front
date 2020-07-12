@@ -365,6 +365,7 @@
   "contractsTableSmartContracts": "智能合约", 
   "contractsTableCreatorAddress": "创建者地址", 
   "contractsTableDateCreated": "创建日期", 
+  "contractsType":"合约种类",
   "contractsTypeContract": "合约", 
   "contractsTypeTokenContract": "通证合约", 
   "dipTitle": "本地开发者奖励协议奖励", 
@@ -484,6 +485,9 @@
   "info":"信息",
   "status":"状态",
   "address":"地址",
-  "addresses":"地址"
+  "addresses":"地址",
+
+  "transfers":"转账",
+  "holders":"持有人"
 
 }
