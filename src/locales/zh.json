@@ -14,6 +14,25 @@
   "headerDipWinners": "DIP获胜者", 
   "headerCurrentText": "（当前）", 
   "headerMenuDstaking": "dStaking", 
+
+  "dashboardNebulasTxHistory":"交易历史",
+  "dashboardCurrentHeight":"当前高度",
+  "dashboardAvgAnnReturnInvest":"平均年化收益",
+  "dashboardAvgAnnReturnInvestTips":"7天内的 NAS 共识激励 / 7天内的平均 NAX 投票 x 365天 / 7天",
+  "dashboardTotalReward":"总激励",
+  "dashboardNodes":"节点总数",
+  "dashboardPollingCycle":"轮询周期",
+  "dashboardVotedForNodes":"当前总投票",
+  "dashboardVotingRate":"当前投票率",
+  "dashboardGovernanceCycle":"治理周期",
+  "dashboardViewAllNodes":"查看所有节点",
+  "dashboardNebEco":"星云经济",
+  "dashboardTopNodes":"排名前21名节点",
+  "dashboardCurrentPollingCycle":"当前轮询周期",
+
+
+
+
   "dashboardDailyTransactionsTitle": "日交易数量", 
   "dashboardDailyTransactionsSubtitle": "交易数量（24小时）", 
   "dashboardNasPriceTitle": "NAS价格", 
@@ -46,6 +65,7 @@
   "dashboardBlocksOneTransaction": "交易", 
   "dashboardBlocksSeveralTransactions": "交易", 
   "dashboardTransactionsTitle": "交易", 
+
   "transactionsTxPrefix": "交易", 
   "transactionsTxSuffix": "属于", 
   "transactionsBlockNumber": "区块编号", 
@@ -422,5 +442,28 @@
   "dstakingTableDstakingRate": "dStaking质押率", 
   "dstakingTableIssuanceQuantity": "发行总量", 
   "dstakingTableBurnedQuantity": "销毁总量", 
-  "dstakingTablePledgeQuantity": "质押总量"
+  "dstakingTablePledgeQuantity": "质押总量",
+
+  "mainnet":"主网",
+  "testnet":"测试网",
+  "price":"价格",
+  "totalSupply":"总供应量",
+  "circulatingSupply":"流通量",
+  "estimateSupply":"预计供应量",
+  "baseOnCurrentDstakingRate":"根据当前dStaking率",
+  "totalCirculatingSupply":"总流通量",
+  "dstakingRate":"dstaking率",
+  "dstakeNasMintNaxNow":"马上质押NAS并获得NAX",
+  "viewNasDistribution":"查看NAS分发",
+  "rewardNas":"NAS奖励",
+  "votedNax":"NAX投票",
+  "naxDistribution":"NAX 分发",
+  "totalRewardNas":"NAS总奖励",
+  "vote":"投票",
+  "totalBurnedNax":"总销毁NAX",
+  "totalMintedNax":"总挖出NAX",
+  "nextMintBlock":"下一出块高度",
+  "timeLeft":"剩余时间",
+  "distributionNaxNow":"正在分发NAX"
+
 }
