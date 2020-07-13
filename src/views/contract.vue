@@ -613,7 +613,7 @@ module.exports = {
     //	 return "0x0";
     // },
     tabButtons() {
-      return [this.$t("transfers"), this.$t("holders")];
+      return ["Transfers", "Holders"];
     },
     urlChange() {
       this.tab = 1;

@@ -3,7 +3,7 @@
     <div class="item-bg">
       <div class="header">
         <div class="title">
-          {{ $t("dashboardNebEco") }}
+          Nebulas Economy
           <span class="net-status">{{ mainnetText }}</span>
         </div>
         <!-- <div class="details">
@@ -159,11 +159,9 @@ export default {
 
         const text = `
             <div>${params.name}</div>
-            <div>Nas ${this.$t("price")}:${price_nas} USDT</div>
-            <div>Nax ${this.$t("price")}:${price_nax} USDT</div>
-            <div>${this.$t(
-              "dashboardAvgAnnReturnInvest"
-            )}:${rate_of_return}</div>
+            <div>Nas Price:${price_nas} USDT</div>
+            <div>Nax Price:${price_nax} USDT</div>
+            <div>Avg. Annual Return on Investment:${rate_of_return}</div>
             <div class=echart-down-arrow></div>
           `;
 
@@ -171,9 +169,9 @@ export default {
       };
 
       const legends = [
-        `NAS ${this.$t("price")} USDT`,
-        `NAX ${this.$t("price")} USDT`,
-        this.$t("dashboardAvgAnnReturnInvest")
+        "NAS Price USDT",
+        "NAX Price USDT",
+        "Avg. Annual Return on Investment"
       ];
 
       const options = {

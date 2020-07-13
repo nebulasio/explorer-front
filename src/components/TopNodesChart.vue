@@ -3,13 +3,11 @@
     <div class="item-bg">
       <div class="header">
         <div class="title">
-          {{ $t("dashboardTopNodes") }}
+          Top 21 Nodes
           <span class="net-status">{{ mainnetText }}</span>
         </div>
         <div v-if="data" class="details">
-          <span
-            >{{ $t("dashboardCurrentPollingCycle") }}: {{ currentPeriod }}</span
-          >
+          <span>Current Polling Cycle: {{ currentPeriod }}</span>
         </div>
       </div>
 
@@ -106,15 +104,15 @@ export default {
 
         const text = `
             <div>${findItem.info.name}</div>
-            <div>${this.$t("vote")}: ${vote}</div>
-            <div>${this.$t("totalRewardNas")}: ${total_reward} NAS</div>
+            <div>Vote: ${vote}</div>
+            <div>Total Rewards: ${total_reward} NAS</div>
             <div class=echart-down-arrow></div>
           `;
 
         return text;
       };
 
-      const legends = [this.$t("rewardNas"), this.$t("votedNax")];
+      const legends = ["Reward NAS", "Voted NAX"];
 
       const option = {
         grid: {

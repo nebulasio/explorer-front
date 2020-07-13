@@ -1,15 +1,15 @@
 <template>
   <div class="monitor">
-    <vue-bread :title="$t('nasDistribution')"></vue-bread>
+    <vue-bread title="NAS Distribution"></vue-bread>
 
     <b-container>
       <!-- <h2 class="subtitle">
         NAS distribution
       </h2> -->
       <h3 class="title">
-        <span>{{ $t("totalSupply") }}: {{ totalSupply }}</span>
-        <span>{{ $t("circulatingSupply") }}: {{ totalCirculation }}</span>
-        <span>{{ $t("price") }}: {{ nasPrice }}</span>
+        <span>Total Supply: {{ totalSupply }}</span>
+        <span>Total Circulation: {{ totalCirculation }}</span>
+        <span>Price: {{ nasPrice }}</span>
       </h3>
       <div class="chart-container">
         <vchart
@@ -19,7 +19,7 @@
         ></vchart>
       </div>
       <h2 class="subtitle">
-        {{ $t("addresses") }} ({{ $t("holdByFoundation") }})
+        Addresses (Hold by Nebulas Foundation)
       </h2>
       <b-table
         striped
@@ -32,7 +32,7 @@
           <span>{{ data.label }} </span>
           <b-icon
             v-b-tooltip.hover
-            :title="$t('nasDistributionPercentTip')"
+            title="Nas Amount / Nas Total Supply"
             icon="question-circle"
           ></b-icon>
         </template>
@@ -91,12 +91,11 @@ export default {
         fields: [
           {
             key: "address",
-            label: this.$t("address")
+            label: "Address"
           },
           {
-            key: "infoKey",
-            label: this.$t("info"),
-            formatter: value => this.$t(value)
+            key: "info",
+            label: "Info"
           },
           {
             key: "nas",
@@ -108,8 +107,7 @@ export default {
           },
           {
             key: "status",
-            label: this.$t("status"),
-            formatter: value => this.$t(value)
+            label: "Status"
           }
         ]
       }
@@ -135,11 +133,12 @@ export default {
     },
     chartOption() {
       const legends = [
-        this.$t("NasReservedForCommunity"),
-        this.$t("DposAdjustment"),
-        this.$t("NasReservedForTeam"),
-        this.$t("GoNebulasFund"),
-        this.$t("restCirculating")
+        "Nas Reserved for Community Ecosystem (Burned)",
+        "DPoS adjustment (Burned)",
+        "Nas Reserved for the Nebulas Team",
+        "Go Nebulas Fund",
+        "dStaking NAS",
+        "rest in circulating"
       ];
       let data = [];
 

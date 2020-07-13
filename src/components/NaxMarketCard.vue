@@ -4,7 +4,7 @@
       <div class="header">
         <div class="title">
           <img class="logo" src="/static/img/nax-logo.png" />
-          <span>NAX {{ $t("price") }}</span>
+          <span>NAX Price</span>
           <span class="net-status">{{ mainnetText }}</span>
         </div>
         <div class="details">
@@ -37,8 +37,8 @@
           </div>
           <div class="col-6">
             <label
-              >{{ $t("estimateSupply") }} <br />
-              ({{ $t("baseOnCurrentDstakingRate") }})</label
+              >Estimated Supply <br />
+              (based on current dStaking rate)</label
             >
             <div>
               {{ totalSupply }}
@@ -56,7 +56,7 @@
             </div>
           </div>
           <div class="col-6">
-            <label>{{ $t("totalCirculatingSupply") }}</label>
+            <label>Total/Circulating Supply</label>
             <div>
               {{ totalCirculation }}
               <span class="suffix">NAX</span>
@@ -74,11 +74,11 @@
             </div>
 
             <a target="__blank" href="https://dstaking.nebulas.io/"
-              >{{ $t("dstakeNasMintNaxNow") }} &gt;
+              >dStake NAS and mint NAX now &gt;
             </a>
           </div>
           <div class="col-6">
-            <label>{{ $t("dstakingRate") }}</label>
+            <label>dStaking Rate</label>
             <div>
               {{ stakingRate }}
 

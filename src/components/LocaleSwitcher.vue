@@ -16,13 +16,12 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="language-selector">
       <div>
-        <a href="#" class="dropdown-item" @click.prevent="switchLocale('en')">
+        <a href="#" class="dropdown-item" @click.prevent="switchLocale('en')"
+          ><img src=/static/img/icon-engflag.png width=12 alt="">
           {{ $t("English") }}</a
         >
-        <a href="#" class="dropdown-item" @click.prevent="switchLocale('zh')">
-          {{ $t("Chinese") }}</a
-        >
-        <a href="#" class="dropdown-item" @click.prevent="switchLocale('es')">
+        <a href="#" class="dropdown-item" @click.prevent="switchLocale('es')"
+          ><img src=/static/img/icon-espflag.png width=12 alt="">
           {{ $t("Spanish") }}</a
         >
       </div>

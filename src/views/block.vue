@@ -174,7 +174,7 @@
 
           <tr v-if="!isEmptyObj(block.node)">
             <td class="font-color-555555">
-              {{ $t("dashboardPollingCycle") }}
+              {{ $t("blockPollingCycleTitle") }}
             </td>
             <td>
               <a rel="noopener noreferrer" target="__blank" :href="periodLink">
