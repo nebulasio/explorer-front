@@ -60,7 +60,7 @@
         <div class="col info font-color-000000 font-24 font-bold title">
           {{ numberAddComma(totalCts) }}
           <span>
-            {{ $t("contractslocalizable") }}
+            {{ $t("dashboardTotalSmartContracts") }}
           </span>
         </div>
         <!--(showing the last {{ maxDisplayCnt }} records)-->
@@ -75,7 +75,7 @@
             <th v-if="$route.params.api === 'testnet'">
               {{ $t("contractsTableCreatorAddress") }}
             </th>
-            <th>Type</th>
+            <th>{{ $t("contractsType") }}</th>
             <th class="text-right" style="padding-right: 24px; width: 120px">
               {{ $t("contractsTableDateCreated") }}
             </th>

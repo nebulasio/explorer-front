@@ -326,7 +326,7 @@ input::placeholder {
                           class="dropdown-item"
                           v-bind:to="'/distribution'"
                         >
-                          <span class="title">NAS Distribution</span>
+                          <span class="title">{{ $t("nasDistribution") }}</span>
                         </router-link>
                       </li>
                       <li>
@@ -334,7 +334,7 @@ input::placeholder {
                           class="dropdown-item"
                           v-bind:to="linkUrl('/contracts')"
                         >
-                          Smart Contract
+                          {{ $t("contractsTitle") }}
                         </router-link>
                       </li>
                     </ul>

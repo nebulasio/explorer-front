@@ -3,12 +3,14 @@
     <div class="item-bg">
       <div class="header">
         <div class="title">
-          NAX Distribution
+          {{ $t("naxDistribution") }}
           <span class="net-status">{{ mainnetText }}</span>
         </div>
         <div class="details">
-          <span v-if="nextMintBlock">Next Mint Block: {{ nextMintBlock }}</span>
-          <span v-if="leftTime">Time Left: {{ leftTime }}</span>
+          <span v-if="nextMintBlock"
+            >{{ $t("nextMintBlock") }}: {{ nextMintBlock }}</span
+          >
+          <span v-if="leftTime">{{ $t("timeLeft") }}: {{ leftTime }}</span>
         </div>
       </div>
 
@@ -75,7 +77,7 @@ export default {
       let currentBlockHeight = this.newBlock[0].height;
 
       if (nextIssueBlockHeight - currentBlockHeight <= 0) {
-        return "Distributing NAX Now";
+        return this.$t("distributionNaxNow");
       }
       var duration = moment.duration(
         (nextIssueBlockHeight - currentBlockHeight) * 15000,
@@ -161,18 +163,22 @@ export default {
 
         const text = `
             <div>${params.name}</div>
-            <div>Total Minted:${total_minted} NAX</div>
-            <div>Total Burned:${total_burned} NAX</div>
-            <div>Total Voted:${total_voted} NAX</div>
+            <div>${this.$t("totalMintedNax")}:${total_minted} NAX</div>
+            <div>${this.$t("totalBurnedNax")}:${total_burned} NAX</div>
+            <div>${this.$t("votedNax")}:${total_voted} NAX</div>
             <div>dStaking NAS:${dstaking_amount} NAS</div>
-            <div>dStaking rate:${dstaking_rate.toFixed(2)}%</div>
+            <div>${this.$t("dstakingRate")}:${dstaking_rate.toFixed(2)}%</div>
             <div class=echart-down-arrow></div>
           `;
 
         return text;
       };
 
-      const legends = ["Total Burned NAX", "Total Minted NAX", "Voted NAX"];
+      const legends = [
+        this.$t("totalBurnedNax"),
+        this.$t("totalMintedNax"),
+        this.$t("votedNax")
+      ];
 
       const options = {
         grid: {
