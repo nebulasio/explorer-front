@@ -4,7 +4,7 @@
       <div class="header">
         <div class="title">
           <img class="logo" src="/static/img/nas-logo.png" />
-          <span>{{ $t("dashboardNasPriceTitle") }}</span>
+          <span>NAS {{ $t("price") }}</span>
           <span class="net-status">{{ mainnetText }}</span>
         </div>
         <div class="details">
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="col-6 col-md-6">
-            <label>Total Supply</label>
+            <label>{{ $t("totalSupply") }}</label>
             <div>
               {{ this.totalSupply }}
               <span class="suffix">NAS</span>
@@ -52,13 +52,13 @@
             </div>
           </div>
           <div class="col-6 col-md-6">
-            <label>Circulating Supply</label>
+            <label>{{ $t("circulatingSupply") }}</label>
             <div>
               {{ this.totalCirculation }}
               <span class="suffix">NAS</span>
             </div>
             <router-link class="link link-style" :to="'/distribution'">
-              View NAS Distribution &gt;
+              {{ $t("viewNasDistribution") }} &gt;
             </router-link>
           </div>
         </div>

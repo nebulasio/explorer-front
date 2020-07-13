@@ -3,10 +3,10 @@
     <div class="item-bg">
       <div class="header">
         <div class="title">
-          Avg. Annual Return on Investment
+          {{ $t("dashboardAvgAnnReturnInvest") }}
           <b-icon
             v-b-tooltip.hover
-            title="NAS rewards in 7 days / avg. voted NAX x 365d / 7d"
+            :title="$t('dashboardAvgAnnReturnInvestTips')"
             icon="question-circle"
           ></b-icon>
           <span class="net-status">{{ mainnetText }}</span>
@@ -25,34 +25,34 @@
       <div class="market container">
         <div class="row">
           <div class="col-6 col-md-4">
-            <label>Total Rewards</label>
+            <label>{{ $t("dashboardTotalReward") }}</label>
             <div>
               {{ totalRewardValue }}
               <span class="suffix">NAS</span>
             </div>
           </div>
           <div class="col-6 col-md-4">
-            <label>Nodes</label>
+            <label>{{ $t("dashboardNodes") }}</label>
             <div>{{ nodeCount }}</div>
           </div>
           <div class="col-6 col-md-4">
-            <label>Polling Cycle</label>
+            <label>{{ $t("dashboardPollingCycle") }}</label>
             <div>{{ currentPeriod }}</div>
           </div>
         </div>
         <div class="row">
           <div class="col-6 col-md-4">
-            <label>Voted for Nodes</label>
+            <label>{{ $t("dashboardVotedForNodes") }}</label>
             <div>
               {{ totalVoteValue }}
               <span class="suffix">NAX</span>
             </div>
             <a target="__blank" href="https://node.nebulas.io/"
-              >View all nodes &gt;
+              >{{ $t("dashboardViewAllNodes") }} &gt;
             </a>
           </div>
           <div class="col-6 col-md-4">
-            <label>Voting Rate</label>
+            <label>{{ $t("dashboardVotingRate") }}</label>
             <div>
               {{ voteRate }}
 
@@ -60,7 +60,7 @@
             </div>
           </div>
           <div class="col-6 col-md-4">
-            <label>Governance Cycle</label>
+            <label>{{ $t("dashboardGovernanceCycle") }}</label>
             <div>{{ currentGovPeriod }}</div>
           </div>
         </div>

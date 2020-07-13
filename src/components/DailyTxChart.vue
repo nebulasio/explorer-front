@@ -3,10 +3,12 @@
     <div class="item-bg">
       <div class="header">
         <div class="title">
-          Nebulas Transaction History
+          {{ $t("dashboardNebulasTxHistory") }}
         </div>
         <div class="details">
-          <span v-if="blockHeight">Current Height: {{ blockHeight }}</span>
+          <span v-if="blockHeight"
+            >{{ $t("dashboardCurrentHeight") }}: {{ blockHeight }}</span
+          >
           <span v-if="tx24h >= 0">
             {{ $t("dashboardDailyTransactionsSubtitle") }}: {{ tx24h }}</span
           >
