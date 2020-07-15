@@ -43,6 +43,7 @@ export default {
   methods: {
     switchLocale(locale) {
       if (this.$i18n.locale !== locale) {
+        console.log(locale);
         this.$moment.locale(locale);
         Trans.changeLocale(locale);
       }

@@ -78,7 +78,7 @@ export default {
       if (nextIssueBlockHeight - currentBlockHeight <= 0) {
         return this.$t("distributionNaxNow");
       }
-      var duration = moment.duration(
+      var duration = this.$moment.duration(
         (nextIssueBlockHeight - currentBlockHeight) * 15000,
         "milliseconds"
       );

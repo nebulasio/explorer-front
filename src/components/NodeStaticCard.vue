@@ -11,9 +11,9 @@
           ></b-icon>
           <span class="net-status">{{ mainnetText }}</span>
         </div>
-        <div v-if="updatedPass" class="details">
+        <div v-if="summary" class="details">
           {{ $t("dashboardNasPriceUpdateTimePrefix") }}:
-          <span>{{ updatedPass }}</span>
+          <span>{{ timeConversion(this.summary.updatedTime) }}</span>
         </div>
       </div>
 
@@ -84,6 +84,11 @@ export default {
   mounted() {
     this.$api.home.getNodeSummary().then(res => (this.summary = res));
   },
+  methods: {
+    timeConversion(ms) {
+      return this.$moment(ms).fromNow();
+    }
+  },
   computed: {
     avgRewardRate() {
       return this.summary && toLocaleString(this.summary.avgRewardRate7 * 100);
@@ -105,9 +110,6 @@ export default {
     },
     currentGovPeriod() {
       return this.summary && this.summary.currentGovPeriod;
-    },
-    updatedPass() {
-      return this.summary && moment(this.summary.updatedTime).fromNow();
     },
     mainnetText() {
       return !isMainnet(this.$route) ? `Mainnet` : "";
