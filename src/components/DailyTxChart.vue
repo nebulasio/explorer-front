@@ -9,9 +9,7 @@
           <span v-if="blockHeight"
             >{{ $t("dashboardCurrentHeight") }}: {{ blockHeight }}</span
           >
-          <span v-if="tx24h >= 0">
-            {{ $t("dashboardDailyTransactionsSubtitle") }}: {{ tx24h }}</span
-          >
+          <span> {{ $t("dashboardDailyTransactionsTitle") }}: {{ tx24h }}</span>
         </div>
       </div>
 
@@ -101,7 +99,7 @@ export default {
       data = data.reverse();
 
       data = data.map(d => {
-        d["date_label"] = this.$moment(d["date"]).format("MMM DD");
+        d["date_label"] = this.$moment(d["date"]).format("M/DD");
         dates.push(d["date_label"]);
         nums.push(d["transaction_count"]);
         return d;
@@ -178,20 +176,21 @@ export default {
           formatter: function(params, ticket, callback) {
             let findItem = _.find(data, { date_label: params.name });
 
-            let date = new Date(params.name);
-            let dateStr = date.toLocaleDateString("en", {
-              year: "numeric",
-              month: "short",
-              day: "numeric"
-            });
+            // let date = new Date(params.name);
+            // let dateStr = date.toLocaleDateString("en", {
+            //   year: "numeric",
+            //   month: "short",
+            //   day: "numeric"
+            // });
 
             let price_nas = Number(findItem["price"]).toFixed(4);
+            let date = vm.$moment(findItem["date"]).format("LL");
 
             const text = `
-            ${dateStr}
+            ${date}
             <div>${vm.$t("dashboardDailyTransactionsSubtitle")}
             ${utility.numberAddComma(params.value)}</div>
-            <div>Nas price: $${price_nas}</div>
+            <div>NAS${vm.$t("price")}: $${price_nas}</div>
             <div class=echart-down-arrow></div>
             `;
 

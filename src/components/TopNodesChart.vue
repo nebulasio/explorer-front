@@ -69,7 +69,7 @@ export default {
 
       let chartData = _.sortBy(this.data, ["currentRanking"]);
 
-      console.log("chartData", chartData);
+      // console.log("chartData", chartData);
 
       const limit = 21;
       let topNodesData = chartData.slice(0, limit).reverse();

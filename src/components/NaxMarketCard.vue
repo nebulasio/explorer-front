@@ -7,9 +7,9 @@
           <span>NAX {{ $t("price") }}</span>
           <span class="net-status">{{ mainnetText }}</span>
         </div>
-        <div class="details">
+        <div v-if="market" class="details">
           {{ $t("dashboardNasPriceUpdateTimePrefix") }}:
-          <span v-if="market">{{ this.updatedPass }}</span>
+          <span v-if="market">{{ timeConversion(this.market.updatedAt) }}</span>
         </div>
       </div>
 
@@ -66,7 +66,7 @@
 
         <div class="row bg-black">
           <div class="col-6">
-            <label>dStaking NAS</label>
+            <label>{{ $t("dstakingNas") }}</label>
             <!-- <div v-if="market">${{ numberAddComma(market.volume24h) }}</div> -->
             <div>
               {{ totalStaking }}
@@ -102,34 +102,36 @@ export default {
       market: null
     };
   },
+  methods: {
+    timeConversion(ms) {
+      return this.$moment(ms).fromNow();
+    }
+  },
   mounted() {
     this.$api.home.getNaxMarket().then(res => (this.market = res));
   },
   computed: {
-    updatedPass() {
-      return this.$moment(this.market.updatedAt).fromNow();
-    },
     stakingRate() {
-      return (this.market.stakingRate * 100).toFixed(2);
+      return this.market && (this.market.stakingRate * 100).toFixed(2);
     },
     priceChange() {
       return this.market && `${toLocaleString(this.market.change24h)}`;
     },
     marketCap() {
-      return `${toLocaleString(this.market.marketCap)}`;
+      return this.market && `${toLocaleString(this.market.marketCap)}`;
     },
 
     volume24h() {
-      return `${toLocaleString(this.market.volume24h)}`;
+      return this.market && `${toLocaleString(this.market.volume24h)}`;
     },
     totalSupply() {
-      return convert2NaxStr(this.market.totalSupply, "");
+      return this.market && convert2NaxStr(this.market.totalSupply, "");
     },
     totalCirculation() {
-      return convert2NaxStr(this.market.totalCirculation, "");
+      return this.market && convert2NaxStr(this.market.totalCirculation, "");
     },
     totalStaking() {
-      return convert2NasStr(this.market.totalStaking, "");
+      return this.market && convert2NasStr(this.market.totalStaking, "");
     },
     mainnetText() {
       return !isMainnet(this.$route) ? `Mainnet` : "";

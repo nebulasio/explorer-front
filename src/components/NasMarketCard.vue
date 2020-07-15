@@ -7,9 +7,9 @@
           <span>NAS {{ $t("price") }}</span>
           <span class="net-status">{{ mainnetText }}</span>
         </div>
-        <div class="details">
+        <div v-if="market" class="details">
           {{ $t("dashboardNasPriceUpdateTimePrefix") }}:
-          <span v-if="market">{{ this.updatedPass }}</span>
+          <span v-if="market">{{ timeConversion(this.market.updatedAt) }}</span>
         </div>
       </div>
 
@@ -81,31 +81,33 @@ export default {
   mounted() {
     this.$api.home.getNasMarket().then(res => (this.market = res));
   },
+  methods: {
+    timeConversion(ms) {
+      return this.$moment(ms).fromNow();
+    }
+  },
   computed: {
-    updatedPass() {
-      return this.$moment(this.market.updatedAt).fromNow();
-    },
     stakingRate() {
-      return this.market.stakingRate * 100;
+      return this.market && this.market.stakingRate * 100;
     },
     marketCap() {
-      return `${toLocaleString(this.market.marketCap)}`;
+      return this.market && `${toLocaleString(this.market.marketCap)}`;
     },
     priceChange() {
       return this.market && `${toLocaleString(this.market.change24h)}`;
     },
 
     volume24h() {
-      return `${toLocaleString(this.market.volume24h)}`;
+      return this.market && `${toLocaleString(this.market.volume24h)}`;
     },
     totalSupply() {
-      return convert2NasStr(this.market.totalSupply, "");
+      return this.market && convert2NasStr(this.market.totalSupply, "");
     },
     totalCirculation() {
-      return convert2NasStr(this.market.totalCirculation, "");
+      return this.market && convert2NasStr(this.market.totalCirculation, "");
     },
     totalStaking() {
-      return convert2NasStr(this.market.totalStaking, "");
+      return this.market && convert2NasStr(this.market.totalStaking, "");
     },
     mainnetText() {
       return !isMainnet(this.$route) ? `Mainnet` : "";
