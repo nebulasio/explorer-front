@@ -60,7 +60,7 @@
 
 
 
-  "dashboardDailyTransactionsTitle": "日交易数量", 
+  "dashboardDailyTransactionsTitle": "今日交易数量（24小时）", 
   "dashboardDailyTransactionsSubtitle": "交易数量（24小时）", 
   "dashboardNasPriceTitle": "NAS价格", 
   "dashboardNasPriceUpdateTimePrefix": "更新", 

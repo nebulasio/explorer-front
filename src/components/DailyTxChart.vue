@@ -9,9 +9,7 @@
           <span v-if="blockHeight"
             >{{ $t("dashboardCurrentHeight") }}: {{ blockHeight }}</span
           >
-          <span v-if="tx24h >= 0">
-            {{ $t("dashboardDailyTransactionsSubtitle") }}: {{ tx24h }}</span
-          >
+          <span> {{ $t("dashboardDailyTransactionsTitle") }}: {{ tx24h }}</span>
         </div>
       </div>
 
