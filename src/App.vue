@@ -17,6 +17,7 @@
 import Header from "@/components/vue-header";
 import Footer from "@/components/vue-footer";
 import Modal from "@/components/vue-modal";
+import { getUserLocale } from "./i18n";
 
 export default {
   name: "App",
@@ -24,6 +25,9 @@ export default {
     Header,
     Footer,
     Modal
+  },
+  beforeCreate() {
+    this.$moment.locale(getUserLocale().locale);
   }
 };
 </script>

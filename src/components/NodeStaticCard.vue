@@ -12,7 +12,7 @@
           <span class="net-status">{{ mainnetText }}</span>
         </div>
         <div v-if="updatedPass" class="details">
-          {{ $t("dashboardNasPriceUpdateTimePrefix") }}
+          {{ $t("dashboardNasPriceUpdateTimePrefix") }}:
           <span>{{ updatedPass }}</span>
         </div>
       </div>

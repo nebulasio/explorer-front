@@ -47,7 +47,7 @@
 </style>
 <template>
   <!-- https://etherscan.io/block/4951841 -->
-  <div class="vue-block ">
+  <div class="vue-block">
     <div class="vue-bread">
       <div class="container">
         <div class="row align-items-center">
@@ -69,7 +69,7 @@
         </span>
       </div>
 
-      <div class="explorer-table-container d-none d-md-block">
+      <div class="explorer-table-container  d-md-block">
         <table class="explorer-table font-16">
           <tr>
             <td class="font-color-555555">
@@ -250,7 +250,7 @@
         </table>
       </div>
 
-      <div class="mobile-detail d-md-none">
+      <!-- <div class="mobile-detail d-md-none">
         <div>
           {{ $t("blockHeightTitle") }}
           <div class="detail">
@@ -272,19 +272,7 @@
                   </router-link>
                 </li>
                 <li>&nbsp; {{ block.height }} &nbsp;</li>
-                <!-- <li>
-                  <router-link
-                    v-if="$root.timestamp - block.timestamp > 16000"
-                    v-bind:to="fragApi + '/block/' + (+$route.params.id + 1)"
-                    aria-label="Next"
-                  >
-                    <span
-                      aria-hidden="true"
-                      class="blocklocalizable"
-                      id="blockNextLink"
-                    ></span>
-                  </router-link>
-                </li> -->
+
               </ul>
             </nav>
           </div>
@@ -332,7 +320,6 @@
             <router-link v-bind:to="fragApi + '/address/' + block.miner">
               <span class="monospace">{{ block.miner }}</span>
             </router-link>
-            <!-- <span v-if="block.miner.alias"> | {{ block.miner.alias }}</span> -->
           </div>
         </div>
         <div>
@@ -388,7 +375,7 @@
           {{ $t("blockGasRewardTitle") }}
           <div class="detail">{{ toWei(block.gas_info.gas_reward) }}</div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -396,7 +383,6 @@
 var api = require("@/assets/api"),
   utility = require("@/assets/utility");
 
-import moment from "moment";
 import _ from "lodash";
 
 module.exports = {
@@ -444,10 +430,12 @@ module.exports = {
       );
     },
     updatedPass() {
-      return this.block && moment(this.block.timestamp * 1000).fromNow();
+      return this.block && this.$moment(this.block.timestamp * 1000).fromNow();
     },
     blockTime() {
-      return this.block && moment(this.block.timestamp * 1000).format();
+      return (
+        this.block && this.$moment(this.block.timestamp * 1000).format("LLL")
+      );
     },
     nodeAvatar() {
       return "https://node-image.nebulas.io/" + this.block.node.info.avatar;

@@ -33,7 +33,6 @@ import "echarts/lib/component/legend";
 import api from "@/assets/api";
 
 import _ from "lodash";
-import moment from "moment";
 
 import { convert2NasNumber, convert2NaxNumber, isMainnet } from "@/utils/neb";
 import { toBigNumString, toLocaleString } from "@/utils/number";
@@ -109,7 +108,7 @@ export default {
         price_nax_data.push(price_nax_day);
         rate_of_return_data.push(rate_of_return_day);
 
-        d["date"] = moment(d.end_timestamp).format("MMM D");
+        d["date"] = this.$moment(d.end_timestamp).format("MMM D");
         d["rate_of_return"] = rate_of_return_day;
 
         dates.push(d["date"]);

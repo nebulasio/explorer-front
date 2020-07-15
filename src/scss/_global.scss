@@ -116,6 +116,12 @@ td.time:hover :nth-child(2) {
 /*  overrides - bootstrap
     ============================================================ */
 
+.container {
+  @include media("<=desktop") {
+    margin-bottom: 15px;
+  }
+}
+
 a,
 a:hover,
 .btn-link,

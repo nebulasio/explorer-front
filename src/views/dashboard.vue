@@ -1013,11 +1013,7 @@ $nax-price-card-height: 520px;
                 </td>
                 <td>
                   <div class="time">
-                    {{
-                      timeConversion(
-                        Date.now() - block.localTimestamp + block.timeDiff
-                      )
-                    }}
+                    {{ timeConversion(block.localTimestamp + block.timeDiff) }}
                   </div>
                 </td>
               </tr>
@@ -1079,11 +1075,7 @@ $nax-price-card-height: 520px;
                 </td>
                 <td>
                   <div class="time">
-                    {{
-                      timeConversion(
-                        Date.now() - tx.localTimestamp + tx.timeDiff
-                      )
-                    }}
+                    {{ timeConversion(tx.localTimestamp + tx.timeDiff) }}
                   </div>
                 </td>
               </tr>
@@ -1196,7 +1188,7 @@ module.exports = {
       return utility.numberAddComma(n);
     },
     timeConversion(ms) {
-      return utility.timeConversion(ms);
+      return this.$moment(ms).fromNow();
     },
     afterEnter: function(el) {
       let height =

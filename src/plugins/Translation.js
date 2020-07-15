@@ -1,6 +1,7 @@
 import axios from "axios";
 import { i18n } from "../i18n";
 import { i18nConfig } from "@/config";
+import Cookies from "js-cookie";
 
 const Trans = {
   get defaultLocale() {
@@ -14,29 +15,31 @@ const Trans = {
   },
   set currentLocale(locale) {
     i18n.locale = locale;
+    Cookies.set("locale", locale);
   },
-  getUserSupportedLocale() {
-    const userPreferredLocale = Trans.getUserLocale();
+  // getUserSupportedLocale() {
+  //   const userPreferredLocale = Trans.getUserLocale();
 
-    if (Trans.isLocaleSupported(userPreferredLocale.locale)) {
-      return userPreferredLocale.locale;
-    }
+  //   if (Trans.isLocaleSupported(userPreferredLocale.locale)) {
+  //     return userPreferredLocale.locale;
+  //   }
 
-    if (Trans.isLocaleSupported(userPreferredLocale.localeNoISO)) {
-      return userPreferredLocale.localeNoISO;
-    }
-    return Trans.defaultlocale;
-  },
-  getUserLocale() {
-    const locale =
-      window.navigator.language ||
-      window.navigator.userLanguage ||
-      Trans.defaultLocale;
-    return {
-      locale: locale,
-      localeNoISO: locale.split("-")[0]
-    };
-  },
+  //   if (Trans.isLocaleSupported(userPreferredLocale.localeNoISO)) {
+  //     return userPreferredLocale.localeNoISO;
+  //   }
+  //   return Trans.defaultlocale;
+  // },
+  // getUserLocale() {
+  //   const locale =
+  //     Cookies.get("locale") ||
+  //     window.navigator.language ||
+  //     window.navigator.userLanguage ||
+  //     Trans.defaultLocale;
+  //   return {
+  //     locale: locale,
+  //     localeNoISO: locale.split("-")[0]
+  //   };
+  // },
   setI18nLocaleInServices(locale) {
     Trans.currentLocale = locale;
     axios.defaults.headers.common["Accept-Language"] = locale;
@@ -58,12 +61,12 @@ const Trans = {
   isLocaleSupported(locale) {
     return Trans.supportedLocales.includes(locale);
   },
-  routeMiddleware(to, from, next) {
-    const locale = to.params.locale;
-    if (!Trans.isLocaleSupported(locale))
-      return next(Trans.getUserSupportedLocale());
-    return Trans.changeLocale(locale).then(() => next());
-  },
+  // routeMiddleware(to, from, next) {
+  //   const locale = to.params.locale;
+  //   if (!Trans.isLocaleSupported(locale))
+  //     return next(Trans.getUserSupportedLocale());
+  //   return Trans.changeLocale(locale).then(() => next());
+  // },
   i18nRoute(to) {
     return {
       ...to,

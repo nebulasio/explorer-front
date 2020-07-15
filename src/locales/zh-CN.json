@@ -1,4 +1,10 @@
 {
+  "lang":{
+    "en":"English",
+    "zh-CN":"简体中文",
+    "es":"Español"
+  },
+
   "Languages": "语言",
   "English": "English",
   "Spanish": "Español",

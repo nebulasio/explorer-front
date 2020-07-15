@@ -8,7 +8,7 @@
           <span class="net-status">{{ mainnetText }}</span>
         </div>
         <div class="details">
-          {{ $t("dashboardNasPriceUpdateTimePrefix") }}
+          {{ $t("dashboardNasPriceUpdateTimePrefix") }}:
           <span v-if="market">{{ this.updatedPass }}</span>
         </div>
       </div>
@@ -68,7 +68,6 @@
 </template>
 
 <script>
-import moment from "moment";
 import { convert2NasStr, isMainnet } from "@/utils/neb";
 import { toLocaleString } from "@/utils/number";
 
@@ -84,7 +83,7 @@ export default {
   },
   computed: {
     updatedPass() {
-      return moment(this.market.updatedAt).fromNow();
+      return this.$moment(this.market.updatedAt).fromNow();
     },
     stakingRate() {
       return this.market.stakingRate * 100;

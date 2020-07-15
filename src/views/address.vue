@@ -636,8 +636,8 @@
                 <div>
                   <div>
                     {{ $t("addressTimeDiffPrefix")
-                    }}{{ timeConversion(o.timeDiff)
-                    }}{{ $t("addressTimeDiffSuffix") }}
+                    }}{{ timeConversion(o.timestamp)
+                    }}
                   </div>
                   <div class="down-arrow-tip">
                     {{
@@ -896,7 +896,7 @@
               </td>
               <td class="time font-color-555555 font-14">
                 <div>
-                  <div>{{ timeConversion(o.timeDiff) }} ago</div>
+                  <div>{{ timeConversion(o.timestamp) }}</div>
                   <div class="down-arrow-tip">
                     {{
                       new Date(o.timestamp)
@@ -1561,7 +1561,7 @@ module.exports = {
       return utility.numberAddComma(n);
     },
     timeConversion(ms) {
-      return utility.timeConversion(ms);
+      return this.$moment(ms).fromNow();
     },
     timeConversionSec(ms) {
       return utility.timeConversionSec(ms);
