@@ -16,14 +16,14 @@
     </a>
     <div class="dropdown-menu" aria-labelledby="language-selector">
       <div>
-        <a href="#" class="dropdown-item" @click.prevent="switchLocale('en')">
-          {{ $t("English") }}</a
+        <a
+          v-for="locale in supportedLocales"
+          :key="locale"
+          href="#"
+          class="dropdown-item"
+          @click.prevent="switchLocale(locale)"
         >
-        <a href="#" class="dropdown-item" @click.prevent="switchLocale('zh')">
-          {{ $t("Chinese") }}</a
-        >
-        <a href="#" class="dropdown-item" @click.prevent="switchLocale('es')">
-          {{ $t("Spanish") }}</a
+          {{ $t(`lang.${locale}`) }}</a
         >
       </div>
     </div>
@@ -43,11 +43,8 @@ export default {
   methods: {
     switchLocale(locale) {
       if (this.$i18n.locale !== locale) {
-        return Trans.changeLocale(locale);
-        // const to = this.$router.resolve({ params: { locale } });
-        // return Trans.changeLocale(locale).then(() => {
-        //   this.$router.push(to.location);
-        // });
+        this.$moment.locale(locale);
+        Trans.changeLocale(locale);
       }
     }
   }

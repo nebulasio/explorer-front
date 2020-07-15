@@ -173,16 +173,9 @@
             <td class="font-16 font-color-000000">
               {{ $t("txTimeAgoPrefix") }}
 
-              {{ timeConversion(tx.timeDiff) }}
+              {{ timeConversion(tx.timestamp) }}
 
-              {{ $t("txTimeAgoSuffix") }}
-              ({{
-                new Date(tx.timestamp)
-                  .toString()
-                  .replace("GMT", "UTC")
-                  .replace(/\(.+\)/gi, "")
-              }}
-              | {{ tx.timestamp }})
+              ({{ datetime(tx.timestamp) }} | {{ tx.timestamp }})
             </td>
           </tr>
           <tr>
@@ -362,13 +355,8 @@
         <div>
           {{ $t("txTimestampText") }}
           <div class="detail">
-            {{ timeConversion(tx.timeDiff) }} ago ({{
-              new Date(tx.timestamp)
-                .toString()
-                .replace("GMT", "UTC")
-                .replace(/\(.+\)/gi, "")
-            }}
-            | {{ tx.timestamp }})
+            {{ timeConversion(tx.timestamp) }} ({{ datetime(tx.timestamp) }} |
+            {{ tx.timestamp }})
           </div>
         </div>
         <div>
@@ -796,7 +784,10 @@ module.exports = {
       return utility.numberAddComma(n);
     },
     timeConversion(ms) {
-      return utility.timeConversion(ms);
+      return this.$moment(ms).fromNow();
+    },
+    datetime(ms) {
+      return this.$moment(ms).format("LLL");
     },
     toWei(n) {
       return utility.toWei(n);

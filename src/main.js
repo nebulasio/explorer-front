@@ -8,8 +8,10 @@ import { Trans } from "./plugins/Translation";
 import App from "./App.vue";
 import api from "./api";
 import VueMobileDetection from "vue-mobile-detection";
+import moment from "moment";
 
 Vue.prototype.$i18nRoute = Trans.i18nRoute.bind(Trans);
+Vue.prototype.$moment = moment;
 Vue.config.productionTip = false;
 
 // 将api挂载到vue的原型上

@@ -201,7 +201,6 @@
 <script>
 var api = require("@/assets/api"),
   utility = require("@/assets/utility");
-import moment from "moment";
 import _ from "lodash";
 
 module.exports = {
@@ -291,10 +290,10 @@ module.exports = {
       return utility.toWei(n);
     },
     updatedPass(timestamp) {
-      return this.arr && moment(timestamp * 1000).fromNow();
+      return this.arr && this.$moment(timestamp * 1000).fromNow();
     },
     blockTime(timestamp) {
-      return this.arr && moment(timestamp * 1000).format();
+      return this.arr && this.$moment(timestamp * 1000).format();
     },
     nodeAvatar(node) {
       return "https://node-image.nebulas.io/" + node.info.avatar;

@@ -35,7 +35,6 @@ import "echarts/lib/component/tooltip";
 import api from "@/assets/api";
 
 import utility from "@/assets/utility";
-import moment from "moment";
 import _ from "lodash";
 
 import { toLocaleString } from "@/utils/number";
@@ -102,7 +101,7 @@ export default {
       data = data.reverse();
 
       data = data.map(d => {
-        d["date_label"] = moment(d["date"]).format("MMM DD");
+        d["date_label"] = this.$moment(d["date"]).format("MMM DD");
         dates.push(d["date_label"]);
         nums.push(d["transaction_count"]);
         return d;

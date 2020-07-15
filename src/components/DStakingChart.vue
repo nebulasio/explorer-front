@@ -34,7 +34,6 @@ import "echarts/lib/component/legend";
 import api from "@/assets/api";
 
 import _ from "lodash";
-import moment from "moment";
 
 import { convert2NasNumber, convert2NaxNumber, isMainnet } from "@/utils/neb";
 import { toBigNumString, toLocaleString } from "@/utils/number";
@@ -121,7 +120,7 @@ export default {
         total_minted_data.push(total_minted_day);
         voted_data.push(voted_day);
 
-        d["date"] = moment(d.end_timestamp).format("MMM D");
+        d["date"] = this.$moment(d.end_timestamp).format("MMM D");
 
         dates.push(d["date"]);
 
