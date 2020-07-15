@@ -462,6 +462,7 @@
   "estimateSupply":"Estimated Supply",
   "baseOnCurrentDstakingRate":"based on current dStaking rate",
   "totalCirculatingSupply":"Total/Circulating Supply",
+  "dstakingNas":"dStaking",
   "dstakingRate":"dStaking Rate",
   "dstakeNasMintNaxNow":"dStake NAS and mint NAX now",
   "viewNasDistribution":"View NAS Distribution",

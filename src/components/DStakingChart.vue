@@ -120,7 +120,7 @@ export default {
         total_minted_data.push(total_minted_day);
         voted_data.push(voted_day);
 
-        d["date"] = this.$moment(d.end_timestamp).format("MMM D");
+        d["date"] = this.$moment(d.end_timestamp).format("M/DD");
 
         dates.push(d["date"]);
 
@@ -165,7 +165,7 @@ export default {
             <div>${this.$t("totalMintedNax")}:${total_minted} NAX</div>
             <div>${this.$t("totalBurnedNax")}:${total_burned} NAX</div>
             <div>${this.$t("votedNax")}:${total_voted} NAX</div>
-            <div>dStaking NAS:${dstaking_amount} NAS</div>
+            <div>${this.$t("dstakingNas")}:${dstaking_amount} NAS</div>
             <div>${this.$t("dstakingRate")}:${dstaking_rate.toFixed(2)}%</div>
             <div class=echart-down-arrow></div>
           `;

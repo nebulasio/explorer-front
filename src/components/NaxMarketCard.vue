@@ -66,7 +66,7 @@
 
         <div class="row bg-black">
           <div class="col-6">
-            <label>dStaking NAS</label>
+            <label>{{ $t("dstakingNas") }}</label>
             <!-- <div v-if="market">${{ numberAddComma(market.volume24h) }}</div> -->
             <div>
               {{ totalStaking }}

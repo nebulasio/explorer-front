@@ -108,7 +108,7 @@ export default {
         price_nax_data.push(price_nax_day);
         rate_of_return_data.push(rate_of_return_day);
 
-        d["date"] = this.$moment(d.end_timestamp).format("MMM D");
+        d["date"] = this.$moment(d.end_timestamp).format("M/DD");
         d["rate_of_return"] = rate_of_return_day;
 
         dates.push(d["date"]);
