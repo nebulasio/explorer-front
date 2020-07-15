@@ -28,6 +28,10 @@
   h5 {
     font-size: 18px;
     font-weight: bold;
+
+    a {
+      color: #333333;
+    }
   }
 
   small {
@@ -130,7 +134,14 @@
         <div class="col-6 col-lg explorer nav-links">
           <small class="top">Nebulas Ecosystem</small>
 
-          <h5>Explorer</h5>
+          <h5>
+            <a
+              href="https://explorer.nebulas.io/"
+              rel="noopener noreferrer"
+              target="__blank"
+              >Explorer</a
+            >
+          </h5>
           <small>Blockchain, dStaking</small>
           <ul class="list-unstyled text-small">
             <li>
@@ -145,6 +156,7 @@
             </li>
             <li>
               <a
+                rel="noopener noreferrer"
                 href="https://github.com/nebulasio/explorer/issues"
                 target="__blank"
                 >Submit Issues</a
@@ -153,19 +165,35 @@
           </ul>
         </div>
         <div class="col-6 col-lg nav-links">
-          <h5>Nodes</h5>
+          <h5>
+            <a
+              href="https://node.nebulas.io/"
+              rel="noopener noreferrer"
+              target="__blank"
+              >Nodes</a
+            >
+          </h5>
           <small>PoD Consensus</small>
           <ul class="list-unstyled text-small">
             <li>
-              <a target="__blank" href="https://node.nebulas.io/list">Nodes</a>
+              <a
+                rel="noopener noreferrer"
+                target="__blank"
+                href="https://node.nebulas.io/list"
+                >Nodes</a
+              >
             </li>
             <li>
-              <a target="__blank" href="https://node.nebulas.io/govern"
+              <a
+                rel="noopener noreferrer"
+                target="__blank"
+                href="https://node.nebulas.io/govern"
                 >Governance</a
               >
             </li>
             <li>
               <a
+                rel="noopener noreferrer"
                 target="__blank"
                 href="https://wiki.nebulas.io/en/latest/node-strategy/README.html"
                 >Node Help</a
@@ -174,21 +202,35 @@
           </ul>
         </div>
         <div class="col-6 col-lg nav-links">
-          <h5>Go.nebulas</h5>
+          <h5>
+            <a
+              href="https://go.nebulas.io/"
+              rel="noopener noreferrer"
+              target="__blank"
+              >Go.nebulas</a
+            >
+          </h5>
           <small>Community Collaboration </small>
           <ul class="list-unstyled text-small">
             <li>
-              <a target="__blank" href="https://go.nebulas.io/projects"
+              <a
+                rel="noopener noreferrer"
+                target="__blank"
+                href="https://go.nebulas.io/projects"
                 >Projects</a
               >
             </li>
             <li>
-              <a target="__blank" href="https://go.nebulas.io/proposals"
+              <a
+                rel="noopener noreferrer"
+                target="__blank"
+                href="https://go.nebulas.io/proposals"
                 >Proposals</a
               >
             </li>
             <li>
               <a
+                rel="noopener noreferrer"
                 target="__blank"
                 href="https://www.notion.so/Go-nebulas-io-Help-Documentation-cbdeb02e0ff547b2b7cf59f2d249aafb"
                 >Go Nebulas Help</a
@@ -198,22 +240,38 @@
         </div>
 
         <div class="col-6 col-lg nav-links">
-          <h5>nebulas.io</h5>
+          <h5>
+            <a
+              rel="noopener noreferrer"
+              target="__blank"
+              href="https://nebulas.io"
+              >nebulas.io</a
+            >
+          </h5>
           <ul class="list-unstyled text-small">
             <li>
-              <a target="__blank" href="https://nebulas.io/wallets.html"
+              <a
+                rel="noopener noreferrer"
+                target="__blank"
+                href="https://nebulas.io/wallets.html"
                 >Wallets</a
               >
             </li>
             <li>
               <a
+                rel="noopener noreferrer"
                 target="__blank"
                 href="https://wiki.nebulas.io/en/latest/go-nebulas/blockchain/mainnet.html"
                 >Documents</a
               >
             </li>
             <li>
-              <a target="__blank" href="https://community.nebulas.io/">Forum</a>
+              <a
+                rel="noopener noreferrer"
+                target="__blank"
+                href="https://community.nebulas.io/"
+                >Forum</a
+              >
             </li>
           </ul>
         </div>
@@ -223,6 +281,7 @@
 
           <div class="links">
             <a
+              rel="noopener noreferrer"
               href=" https://itunes.apple.com/us/app/nas-nano-pro/id1441776793&mt=8"
               target="__blank"
             >
@@ -232,6 +291,7 @@
               />
             </a>
             <a
+              rel="noopener noreferrer"
               href=" https://play.google.com/store/apps/details?id=io.nebulas.wallet.android&hl=en_US"
               target="__blank"
             >
