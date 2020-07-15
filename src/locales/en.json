@@ -4,6 +4,27 @@
     "zh-CN":"简体中文",
     "es":"Español"
   },
+
+  "menu":{
+    "nebulasEcosystem":"Nebulas Ecosystem",
+    "explorer":"Explorer",
+    "blockchain,dStaking":"Blockchain, dStaking",
+    "blocks":"Blocks",
+    "transactions":"Transactions",
+    "submitIssuses":"Submit Issues",
+    "nodes":"Nodes",
+    "PoDConsensus":"PoD Consensus",
+    "governance":"Governance",
+    "nodeHelp":"Node Help",
+    "communityCollaboration":"Community Collaboration",
+    "projects":"Projects",
+    "proposals":"Proposals",
+    "goNebulasHelp":"Go Nebulas Help",
+    "wallets":"Wallets",
+    "documents":"Documents",
+    "forum":"Forum",
+    "nasNanoProDownload":"Nas nano pro Download"
+  },
   
   "Languages": "Languages",
   "English": "English",

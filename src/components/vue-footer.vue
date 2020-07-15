@@ -132,26 +132,26 @@
           />
         </div>
         <div class="col-6 col-lg explorer nav-links">
-          <small class="top">Nebulas Ecosystem</small>
+          <small class="top">{{ $t("menu.nebulasEcosystem") }}</small>
 
           <h5>
             <a
               href="https://explorer.nebulas.io/"
               rel="noopener noreferrer"
               target="__blank"
-              >Explorer</a
+              >{{ $t("menu.explorer") }}</a
             >
           </h5>
-          <small>Blockchain, dStaking</small>
+          <small>{{ $t("menu.blockchain,dStaking") }}</small>
           <ul class="list-unstyled text-small">
             <li>
               <router-link :to="'/blocks'">
-                {{ $t("headerBlocksSubmenu") }}
+                {{ $t("menu.blocks") }}
               </router-link>
             </li>
             <li>
               <router-link :to="'/blocks'">
-                {{ $t("headerTransactionsSubmenu") }}
+                {{ $t("menu.transactions") }}
               </router-link>
             </li>
             <li>
@@ -159,7 +159,7 @@
                 rel="noopener noreferrer"
                 href="https://github.com/nebulasio/explorer/issues"
                 target="__blank"
-                >Submit Issues</a
+                >{{ $t("menu.submitIssuses") }}</a
               >
             </li>
           </ul>
@@ -170,17 +170,17 @@
               href="https://node.nebulas.io/"
               rel="noopener noreferrer"
               target="__blank"
-              >Nodes</a
+              >{{ $t("menu.nodes") }}</a
             >
           </h5>
-          <small>PoD Consensus</small>
+          <small>{{ $t("menu.PoDConsensus") }}</small>
           <ul class="list-unstyled text-small">
             <li>
               <a
                 rel="noopener noreferrer"
                 target="__blank"
                 href="https://node.nebulas.io/list"
-                >Nodes</a
+                >{{ $t("menu.nodes") }}</a
               >
             </li>
             <li>
@@ -188,7 +188,7 @@
                 rel="noopener noreferrer"
                 target="__blank"
                 href="https://node.nebulas.io/govern"
-                >Governance</a
+                >{{ $t("menu.governance") }}</a
               >
             </li>
             <li>
@@ -196,7 +196,7 @@
                 rel="noopener noreferrer"
                 target="__blank"
                 href="https://wiki.nebulas.io/en/latest/node-strategy/README.html"
-                >Node Help</a
+                >{{ $t("menu.nodeHelp") }}</a
               >
             </li>
           </ul>
@@ -210,14 +210,14 @@
               >Go.nebulas</a
             >
           </h5>
-          <small>Community Collaboration </small>
+          <small>{{ $t("menu.communityCollaboration") }}</small>
           <ul class="list-unstyled text-small">
             <li>
               <a
                 rel="noopener noreferrer"
                 target="__blank"
                 href="https://go.nebulas.io/projects"
-                >Projects</a
+                >{{ $t("menu.projects") }}</a
               >
             </li>
             <li>
@@ -225,7 +225,7 @@
                 rel="noopener noreferrer"
                 target="__blank"
                 href="https://go.nebulas.io/proposals"
-                >Proposals</a
+                >{{ $t("menu.proposals") }}</a
               >
             </li>
             <li>
@@ -233,7 +233,7 @@
                 rel="noopener noreferrer"
                 target="__blank"
                 href="https://www.notion.so/Go-nebulas-io-Help-Documentation-cbdeb02e0ff547b2b7cf59f2d249aafb"
-                >Go Nebulas Help</a
+                >{{ $t("menu.goNebulasHelp") }}</a
               >
             </li>
           </ul>
@@ -254,7 +254,7 @@
                 rel="noopener noreferrer"
                 target="__blank"
                 href="https://nebulas.io/wallets.html"
-                >Wallets</a
+                >{{ $t("menu.wallets") }}</a
               >
             </li>
             <li>
@@ -262,7 +262,7 @@
                 rel="noopener noreferrer"
                 target="__blank"
                 href="https://wiki.nebulas.io/en/latest/go-nebulas/blockchain/mainnet.html"
-                >Documents</a
+                >{{ $t("menu.documents") }}</a
               >
             </li>
             <li>
@@ -270,14 +270,14 @@
                 rel="noopener noreferrer"
                 target="__blank"
                 href="https://community.nebulas.io/"
-                >Forum</a
+                >{{ $t("menu.forum") }}</a
               >
             </li>
           </ul>
         </div>
 
         <div class="col-6 col-lg download">
-          <small class="title">Nas nano pro Download</small>
+          <small class="title">{{ $t("menu.nasNanoProDownload") }}</small>
 
           <div class="links">
             <a

@@ -5,6 +5,27 @@
     "es":"Español"
   },
 
+  "menu":{
+    "nebulasEcosystem":"星云生态",
+    "explorer":"浏览器",
+    "blockchain,dStaking":"区块链,质押(dStaking)",
+    "blocks":"区块",
+    "transactions":"交易",
+    "submitIssuses":"提交问题",
+    "nodes":"节点",
+    "PoDConsensus":"PoD 共识",
+    "governance":"治理",
+    "nodeHelp":"节点帮助",
+    "communityCollaboration":"社区协作",
+    "projects":"项目",
+    "proposals":"提案",
+    "goNebulasHelp":"Go Nebulas帮助",
+    "wallets":"钱包",
+    "documents":"文档",
+    "forum":"论坛",
+    "nasNanoProDownload":"Nas nano pro下载"
+  },
+
   "Languages": "语言",
   "English": "English",
   "Spanish": "Español",
