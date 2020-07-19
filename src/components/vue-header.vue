@@ -403,8 +403,10 @@ input::placeholder {
                       href="https://explorer.nebulas.io/"
                       class="dropdown-item"
                     >
-                      <span class="title">Explorer</span>
-                      <span class="desc">Blockchain, dStaking</span>
+                      <span class="title">{{ $t("menu.explorer") }}</span>
+                      <span class="desc">{{
+                        $t("menu.blockchain,dStaking")
+                      }}</span>
                     </a>
                   </li>
 
@@ -414,8 +416,8 @@ input::placeholder {
                       href="https://node.nebulas.io/"
                       class="dropdown-item"
                     >
-                      <span class="title">Nodes</span>
-                      <span class="desc">POD Consensus</span>
+                      <span class="title">{{ $t("menu.nodes") }}</span>
+                      <span class="desc">{{ $t("menu.PoDConsensus") }}</span>
                     </a>
                   </li>
 
@@ -426,7 +428,9 @@ input::placeholder {
                       class="dropdown-item"
                     >
                       <span class="title">Go Nebulas</span>
-                      <span class="desc">Community Collaboration</span>
+                      <span class="desc">{{
+                        $t("menu.communityCollaboration")
+                      }}</span>
                     </a>
                   </li>
 
@@ -436,7 +440,7 @@ input::placeholder {
                       href="https://nano.nebulas.io"
                       class="dropdown-item"
                     >
-                      <span>APP</span>
+                      <span>{{ $t("menu.wallets") }}</span>
                     </a>
                   </li>
 
@@ -446,7 +450,7 @@ input::placeholder {
                       href="https://wiki.nebulas.io/"
                       class="dropdown-item"
                     >
-                      <span>Documents</span>
+                      <span>{{ $t("menu.documents") }}</span>
                     </a>
                   </li>
 
@@ -456,7 +460,7 @@ input::placeholder {
                       href="https://community.nebulas.io"
                       class="dropdown-item"
                     >
-                      <span>Forum</span>
+                      <span>{{ $t("menu.forum") }}</span>
                     </a>
                   </li>
 
