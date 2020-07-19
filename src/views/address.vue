@@ -635,9 +635,7 @@
               <td class="time font-color-555555 font-14">
                 <div>
                   <div>
-                    {{ $t("addressTimeDiffPrefix")
-                    }}{{ timeConversion(o.timestamp)
-                    }}
+                   {{ timeConversion(o.timestamp)}}
                   </div>
                   <div class="down-arrow-tip">
                     {{
@@ -1024,9 +1022,7 @@
               <td class="time font-color-555555 font-14">
                 <div>
                   <div>
-                    {{ $t("addressTimeStampPrefix")
-                    }}{{ timeConversion(new Date() - o.timestamp) }}
-                    {{ $t("addressTimeStampSuffix") }}
+                    {{ timeConversion(o.timestamp) }}
                   </div>
                   <div class="down-arrow-tip">
                     {{
@@ -1140,9 +1136,7 @@
               <td class="time font-color-555555 font-14">
                 <div>
                   <div>
-                    {{ $t("addressTimeStampPrefix2")
-                    }}{{ timeConversion(new Date() - o.timestamp)
-                    }}{{ $t("addressTimeStampSuffix2") }}
+                   {{ timeConversion(o.timestamp) }}
                   </div>
                   <div class="down-arrow-tip">
                     {{
