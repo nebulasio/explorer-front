@@ -220,7 +220,12 @@ export default {
         ],
         tooltip: {
           trigger: "item",
-          formatter: "{b}: {c} NAS ({d}%)"
+          formatter: function(params) {
+            let str = `${params.name}: ${params.value.toLocaleString()} NAS (${
+              params.percent
+            }%) `;
+            return str;
+          }
         },
         legend: {
           left: "center",
@@ -233,7 +238,6 @@ export default {
             type: "pie",
             radius: ["25%", "50%"],
             label: {
-              // formatter: "{a|{b}}\n{b|{c} NAS} {per|{d}%}  ",
               formatter: function(params) {
                 let str =
                   "{a|" +
