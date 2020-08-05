@@ -139,9 +139,11 @@ export default {
         this.$t("DposAdjustment"),
         this.$t("NasReservedForTeam"),
         this.$t("GoNebulasFund"),
+        this.$t("dstakingNas"),
         this.$t("restCirculating")
       ];
       let data = [];
+      let GnFund;
 
       if (!this.foundationAddrData.length) {
         return null;
@@ -175,6 +177,7 @@ export default {
           this.foundationAddrData.forEach(el => {
             if (el["key"] === "gn") {
               value = el["nasAmount"];
+              GnFund = value;
             }
           });
         }
@@ -190,16 +193,19 @@ export default {
             this.nasMarket.totalCirculation
           );
 
-          value = totalCirculation - data[3].value - data[4].value;
+          const totalDStaking = convert2NasNumber(this.nasMarket.totalStaking);
+
+          value = totalCirculation - totalDStaking - GnFund;
         }
 
         data.push({
-          value: value.toFixed(2),
+          value: Number(value.toFixed(2)),
           name
         });
       }
 
-      console.log(data);
+      console.log("legends", legends);
+      console.log("data", data);
 
       const options = {
         color: [
@@ -227,7 +233,18 @@ export default {
             type: "pie",
             radius: ["25%", "50%"],
             label: {
-              formatter: "{a|{b}}\n{b|{c} NAS} {per|{d}%}  ",
+              // formatter: "{a|{b}}\n{b|{c} NAS} {per|{d}%}  ",
+              formatter: function(params) {
+                let str =
+                  "{a|" +
+                  params.name +
+                  "}\n{b|" +
+                  params.value.toLocaleString() +
+                  " NAS} {per|" +
+                  params.percent +
+                  "%}";
+                return str;
+              },
               rich: {
                 a: {
                   color: "#000",
