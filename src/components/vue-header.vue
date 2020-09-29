@@ -255,8 +255,15 @@ input::placeholder {
     >
       <div class="container">
         <div class="home">
-          <router-link v-bind:to="fragApi + '/'" class="navbar-brand">
-            <img class="nas-logo" src="/static/img/nebulas-logo.png" alt />
+          <router-link
+            v-bind:to="fragApi + '/'"
+            class="navbar-brand"
+          >
+            <img
+              class="nas-logo"
+              src="/static/img/nebulas-logo.png"
+              alt
+            />
             <span>Explorer</span>
           </router-link>
         </div>
@@ -350,7 +357,10 @@ input::placeholder {
                         </router-link>
                       </li>
                       <li>
-                        <router-link class="dropdown-item" :to="'/dstaking'">
+                        <router-link
+                          class="dropdown-item"
+                          :to="'/dstaking'"
+                        >
                           dStaking
                         </router-link>
                       </li>
@@ -373,8 +383,15 @@ input::placeholder {
             </li>
           </ul>
 
-          <form class="form-inline" v-on:submit.prevent="onSubmit">
-            <img src=/static/img/icon_search.png width=16 alt="" />
+          <form
+            class="form-inline"
+            v-on:submit.prevent="onSubmit"
+          >
+            <img
+              src=/static/img/icon_search.png
+              width=16
+              alt=""
+            />
             <input
               class="mr-sm-2 font-12"
               type="search"
@@ -490,8 +507,15 @@ input::placeholder {
       v-if="$isMobile()"
       class="navbar navbar-expand-lg navbar-light bg-light"
     >
-      <router-link v-bind:to="fragApi + '/'" class="navbar-brand">
-        <img class="nas-logo" src="/static/img/nebulas-logo.png" alt />
+      <router-link
+        v-bind:to="fragApi + '/'"
+        class="navbar-brand"
+      >
+        <img
+          class="nas-logo"
+          src="/static/img/nebulas-logo.png"
+          alt
+        />
         <span>Explorer</span>
       </router-link>
 
@@ -507,7 +531,10 @@ input::placeholder {
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div
+        class="collapse navbar-collapse"
+        id="navbarSupportedContent"
+      >
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
             <a
@@ -521,7 +548,10 @@ input::placeholder {
             >
               Blockchains
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div
+              class="dropdown-menu"
+              aria-labelledby="navbarDropdown"
+            >
               <template v-for="(item, index) in menuItems">
                 <router-link
                   class="dropdown-item"
@@ -531,7 +561,11 @@ input::placeholder {
                 >
                   {{ item.text }}
                 </router-link>
-                <div v-else v-bind:key="index" class="dropdown-divider"></div>
+                <div
+                  v-else
+                  v-bind:key="index"
+                  class="dropdown-divider"
+                ></div>
               </template>
             </div>
           </li>
@@ -539,8 +573,15 @@ input::placeholder {
             <LocaleSwitcher />
           </li>
         </ul>
-        <form class="form-inline" v-on:submit.prevent="onSubmit">
-          <img src=/static/img/icon_search.png width=16 alt="" />
+        <form
+          class="form-inline"
+          v-on:submit.prevent="onSubmit"
+        >
+          <img
+            src=/static/img/icon_search.png
+            width=16
+            alt=""
+          />
           <input
             class="mr-sm-2 font-12"
             type="search"
@@ -653,14 +694,18 @@ module.exports = {
           this.$root.showModalLoading = false;
           this.search = "";
 
+          let prefix_url = "";
+          if (this.$route.params.api === "testnet") {
+            prefix_url = "/testnet";
+          }
+
           if (o.type == "block")
-            this.$router.push(this.fragApi + "/block/" + o.q);
+            this.$router.push(prefix_url + "/block/" + o.q);
           else if (o.type == "address")
-            this.$router.push(this.fragApi + "/address/" + o.q);
-          else if (o.type == "tx")
-            this.$router.push(this.fragApi + "/tx/" + o.q);
+            this.$router.push(prefix_url + "/address/" + o.q);
+          else if (o.type == "tx") this.$router.push(prefix_url + "/tx/" + o.q);
           else if (o.type == "contract")
-            this.$router.push(this.fragApi + "/token/" + o.q);
+            this.$router.push(prefix_url + "/token/" + o.q);
           else {
             this.$root.search = o.q;
             this.$router.push(
@@ -681,12 +726,15 @@ module.exports = {
       );
     },
     apiSwitch() {
+      const hash = location.hash;
       if (this.$route.params.api === "testnet") {
-        this.$router.replace("/");
+        const new_hash = hash.replace("#/testnet/", "/");
+        this.$router.push({ path: new_hash });
       } else {
-        this.$router.replace("/testnet");
+        // is mainnet
+        const new_hash = hash.replace("#/", "/testnet/");
+        this.$router.push({ path: new_hash });
       }
-      location.reload();
     }
     // atpAddress() {
     //   var api = this.$route.params.api ? this.$route.params.api : "mainnet";
