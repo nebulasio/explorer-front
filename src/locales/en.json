@@ -63,7 +63,7 @@
   "dashboardNasPriceUpdateTimePrefix": "Updated",
   "dashboardNasPriceUpdateTimeSuffix": " ago",
   "dashboardNasMarketCap": "Market Cap",
-  "dashboardCirculationMarketCap": "Market Cap",
+  "dashboardMarketCap": "Market Cap",
   "dashboardNasMarketVol": "Market Volume (24h)",
   "dashboardBlocksTitle": "Blocks",
   "dashboardBlocksSubtitle": "Current status",

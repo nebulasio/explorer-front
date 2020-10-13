@@ -63,7 +63,7 @@
   "dashboardNasPriceUpdateTimePrefix": "更新",
   "dashboardNasPriceUpdateTimeSuffix": " 之前",
   "dashboardNasMarketCap": "市值",
-  "dashboardCirculationMarketCap": "流通市值",
+  "dashboardMarketCap": "市值",
   "dashboardNasMarketVol": "市场交易量（24小时）",
   "dashboardBlocksTitle": "区块",
   "dashboardBlocksSubtitle": "当前状态",

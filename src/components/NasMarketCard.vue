@@ -36,7 +36,7 @@
       <div class="market">
         <div class="row">
           <div class="col-6 col-md-6">
-            <label>{{ $t("dashboardCirculationMarketCap") }}</label>
+            <label>{{ $t("dashboardMarketCap") }}</label>
             <div>
               <span class="prefix">$</span>
               {{ this.marketCap }}

@@ -36,10 +36,10 @@
       <div class="market">
         <div class="row">
           <div class="col-6">
-            <label>{{ $t("dashboardCirculationMarketCap") }}</label>
+            <label>{{ $t("dashboardMarketCap") }}</label>
             <div>
               <span class="prefix">$</span>
-              {{ circulationMarketCap }}
+              {{ marketCap }}
             </div>
           </div>
           <div class="col-6">
@@ -129,7 +129,7 @@ export default {
     priceChange() {
       return this.market && `${toLocaleString(this.market.change24h)}`;
     },
-    circulationMarketCap() {
+    marketCap() {
       let marketCap;
       if (this.market) {
         marketCap =
@@ -139,9 +139,6 @@ export default {
         return toLocaleString(marketCap);
       }
       return "";
-    },
-    marketCap() {
-      return this.market && `${toLocaleString(this.market.marketCap)}`;
     },
 
     volume24h() {
