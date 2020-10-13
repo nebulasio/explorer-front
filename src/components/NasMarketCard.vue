@@ -3,25 +3,32 @@
     <div class="item-bg">
       <div class="header">
         <div class="title">
-          <img class="logo" src="/static/img/nas-logo.png" />
+          <img
+            class="logo"
+            src="/static/img/nas-logo.png"
+          />
           <span>NAS {{ $t("price") }}</span>
           <span class="net-status">{{ mainnetText }}</span>
         </div>
-        <div v-if="market" class="details">
+        <div
+          v-if="market"
+          class="details"
+        >
           {{ $t("dashboardNasPriceUpdateTimePrefix") }}:
           <span v-if="market">{{ timeConversion(this.market.updatedAt) }}</span>
         </div>
       </div>
 
-      <div v-if="market" class="detail">
+      <div
+        v-if="market"
+        class="detail"
+      >
         <span class="prefix">$</span>
         <span>{{ market.price }}</span>
-        <span
-          :class="{
+        <span :class="{
             'price-down': market.trends <= 0,
             'price-up': market.trends > 0
-          }"
-          >{{ market.trends > 0 ? "+" : "-" }}{{ priceChange
+          }">{{ market.trends > 0 ? "+" : "-" }}{{ priceChange
           }}<span class="suffix">%</span>
         </span>
       </div>
@@ -29,7 +36,7 @@
       <div class="market">
         <div class="row">
           <div class="col-6 col-md-6">
-            <label>{{ $t("dashboardNasMarketCap") }}</label>
+            <label>{{ $t("dashboardCirculationMarketCap") }}</label>
             <div>
               <span class="prefix">$</span>
               {{ this.marketCap }}
@@ -57,7 +64,10 @@
               {{ this.totalCirculation }}
               <span class="suffix">NAS</span>
             </div>
-            <router-link class="link link-style" :to="'/distribution'">
+            <router-link
+              class="link link-style"
+              :to="'/distribution'"
+            >
               {{ $t("viewNasDistribution") }} &gt;
             </router-link>
           </div>

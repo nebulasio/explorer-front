@@ -3,25 +3,32 @@
     <div class="item-bg">
       <div class="header">
         <div class="title">
-          <img class="logo" src="/static/img/nax-logo.png" />
+          <img
+            class="logo"
+            src="/static/img/nax-logo.png"
+          />
           <span>NAX {{ $t("price") }}</span>
           <span class="net-status">{{ mainnetText }}</span>
         </div>
-        <div v-if="market" class="details">
+        <div
+          v-if="market"
+          class="details"
+        >
           {{ $t("dashboardNasPriceUpdateTimePrefix") }}:
           <span v-if="market">{{ timeConversion(this.market.updatedAt) }}</span>
         </div>
       </div>
 
-      <div v-if="market" class="detail">
+      <div
+        v-if="market"
+        class="detail"
+      >
         <span class="prefix">$</span>
         <span>{{ market.price }}</span>
-        <span
-          :class="{
+        <span :class="{
             'price-down': market.trends <= 0,
             'price-up': market.trends > 0
-          }"
-          >{{ market.trends > 0 ? "+" : "-" }}{{ priceChange
+          }">{{ market.trends > 0 ? "+" : "-" }}{{ priceChange
           }}<span class="suffix">%</span>
         </span>
       </div>
@@ -29,17 +36,15 @@
       <div class="market">
         <div class="row">
           <div class="col-6">
-            <label>{{ $t("dashboardNasMarketCap") }}</label>
+            <label>{{ $t("dashboardCirculationMarketCap") }}</label>
             <div>
               <span class="prefix">$</span>
-              {{ marketCap }}
+              {{ circulationMarketCap }}
             </div>
           </div>
           <div class="col-6">
-            <label
-              >{{ $t("estimateSupply") }} <br />
-              ({{ $t("baseOnCurrentDstakingRate") }})</label
-            >
+            <label>{{ $t("estimateSupply") }} <br />
+              ({{ $t("baseOnCurrentDstakingRate") }})</label>
             <div>
               {{ totalSupply }}
 
@@ -73,8 +78,10 @@
               <span class="suffix">NAS</span>
             </div>
 
-            <a target="__blank" href="https://dstaking.nebulas.io/"
-              >{{ $t("dstakeNasMintNaxNow") }} &gt;
+            <a
+              target="__blank"
+              href="https://dstaking.nebulas.io/"
+            >{{ $t("dstakeNasMintNaxNow") }} &gt;
             </a>
           </div>
           <div class="col-6">
@@ -92,7 +99,12 @@
 </template>
 
 <script>
-import { convert2NaxStr, convert2NasStr, isMainnet } from "@/utils/neb";
+import {
+  convert2NaxStr,
+  convert2NaxNumber,
+  convert2NasStr,
+  isMainnet
+} from "@/utils/neb";
 import { toLocaleString } from "@/utils/number";
 
 export default {
@@ -116,6 +128,17 @@ export default {
     },
     priceChange() {
       return this.market && `${toLocaleString(this.market.change24h)}`;
+    },
+    circulationMarketCap() {
+      let marketCap;
+      if (this.market) {
+        marketCap =
+          convert2NaxNumber(this.market.totalCirculation) * this.market.price;
+        toLocaleString(marketCap);
+
+        return toLocaleString(marketCap);
+      }
+      return "";
     },
     marketCap() {
       return this.market && `${toLocaleString(this.market.marketCap)}`;
