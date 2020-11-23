@@ -593,7 +593,7 @@
                 v-else
                 style="width: 50px;"
               ></th>
-              <th>Nonce</th>
+              <th v-if="!isContract">Nonce</th>
               <th>{{ $t("addressTableTxHash") }}</th>
               <th>{{ $t("addressTableTxBlock") }}</th>
               <th>{{ $t("addressTableTxAge") }}</th>
@@ -629,7 +629,10 @@
                   v-bind:src="statusIcon(o, o.status)"
                 />
               </td>
-              <td class="txs-nonce font-color-555555 font-14">
+              <td
+                v-if="!isContract"
+                class="txs-nonce font-color-555555 font-14"
+              >
                 <span>{{o.nonce}}</span>
               </td>
               <td class="txs-hash">

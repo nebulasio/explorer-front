@@ -979,7 +979,7 @@ module.exports = {
       };
     },
     customEventDataFormatter(data, key, parent, defaultFormatted) {
-      if (key === "from" || key === "to") {
+      if (isNebAddress(data)) {
         return `<a href="#${this.fragApi +
           "/address/" +
           data}" target="_blank">"${data}"</a>`;
