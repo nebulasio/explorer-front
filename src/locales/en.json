@@ -515,5 +515,8 @@
   "addresses": "Addresses",
 
   "transfers": "Transfers",
-  "holders": "Holders"
+  "holders": "Holders",
+
+  "event": "Event",
+  "txEvent": "Transaction Event"
 }

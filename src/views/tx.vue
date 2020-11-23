@@ -702,7 +702,7 @@
               class="font-16 font-color-555555"
               style="padding-left: 24px;"
             >
-              Event
+              {{ $t("txEvent") }}:
             </td>
             <td>
               <a

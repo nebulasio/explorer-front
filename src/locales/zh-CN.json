@@ -514,5 +514,8 @@
   "addresses": "地址",
 
   "transfers": "转账",
-  "holders": "持有人"
+  "holders": "持有人",
+
+  "event": "事件",
+  "txEvent": "交易事件"
 }
