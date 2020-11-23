@@ -227,7 +227,10 @@
 </style>
 <template>
   <!-- https://etherscan.io/address/0xea674fdde714fd979de3edf0f56aa9716b898ec8 -->
-  <div class="vue-address " v-bind:triggerComputed="urlChange">
+  <div
+    class="vue-address "
+    v-bind:triggerComputed="urlChange"
+  >
     <vue-bread
       v-bind:title="navTitle"
       v-bind:subtitle="$route.params.id"
@@ -236,12 +239,17 @@
     >
     </vue-bread>
 
-    <div v-if="obj" class="container explorer-table-container">
+    <div
+      v-if="obj"
+      class="container explorer-table-container"
+    >
       <div class="font-24 font-bold font-color-000000 table-title">
         {{ $t("addressOverview") }}
-        <span class="c777" v-show="obj.address.alias">
-          | {{ obj.address.alias }}</span
+        <span
+          class="c777"
+          v-show="obj.address.alias"
         >
+          | {{ obj.address.alias }}</span>
       </div>
       <table class="explorer-table d-none d-md-table">
         <tr>
@@ -305,13 +313,14 @@
             {{ $t("addressNRC20TokensTitle") }}:
           </td>
           <td>
-            <div id="dropdown-tokens" data-toggle="dropdown">
+            <div
+              id="dropdown-tokens"
+              data-toggle="dropdown"
+            >
               <span class="font-16 font-color-000000">{{
                 tokenAmount(displayToken.balance, displayToken.decimal)
               }}</span>
-              <router-link
-                v-bind:to="fragApi + '/token/' + displayToken.contract"
-              >
+              <router-link v-bind:to="fragApi + '/token/' + displayToken.contract">
                 <span class="font-16 font-bold">{{
                   displayToken.tokenName
                 }}</span>
@@ -353,10 +362,16 @@
               aria-expanded="false"
               aria-controls="collapseExample"
             >
-              <span class="font-16" v-show="isShowQRCode === false">{{
+              <span
+                class="font-16"
+                v-show="isShowQRCode === false"
+              >{{
                 $t("addressViewToPayTitle")
               }}</span>
-              <span class="font-16" v-show="isShowQRCode === true">{{
+              <span
+                class="font-16"
+                v-show="isShowQRCode === true"
+              >{{
                 $t("addressHide")
               }}</span>
               <img
@@ -369,22 +384,22 @@
                 "
               />
             </a>
-            <div class="collapse" id="collapse-mobile">
+            <div
+              class="collapse"
+              id="collapse-mobile"
+            >
               <div class="pt-10">
                 <qrcode-vue
                   :value="$route.params.id"
                   :size="220"
                   level="H"
                 ></qrcode-vue>
-                <span class="font-16 detail"
-                  >{{ $t("addressScanPrefix") }}
+                <span class="font-16 detail">{{ $t("addressScanPrefix") }}
                   <a
                     href="https://nano.nebulas.io/index_en.html"
                     target="_blank"
                   >
-                    {{ $t("addressScanSuffix") }}</a
-                  ></span
-                >
+                    {{ $t("addressScanSuffix") }}</a></span>
               </div>
             </div>
           </td>
@@ -433,13 +448,14 @@
         <div v-if="!isContract && displayToken">
           {{ $t("addressNRC20Tokens") }}:
           <div class="detail">
-            <div id="dropdown-tokens" data-toggle="dropdown">
+            <div
+              id="dropdown-tokens"
+              data-toggle="dropdown"
+            >
               <span class="font-color-000000">{{
                 tokenAmount(displayToken.balance, displayToken.decimal)
               }}</span>
-              <router-link
-                v-bind:to="fragApi + '/token/' + displayToken.contract"
-              >
+              <router-link v-bind:to="fragApi + '/token/' + displayToken.contract">
                 <span class="font-bold">{{ displayToken.tokenName }}</span>
               </router-link>
               <img
@@ -472,13 +488,11 @@
               <span
                 class="align-middle font-16 weight-400"
                 v-show="isShowQRCode === false"
-                >{{ $t("addressViewToPay") }}</span
-              >
+              >{{ $t("addressViewToPay") }}</span>
               <span
                 class="align-middle font-16 weight-400"
                 v-show="isShowQRCode === true"
-                >{{ $t("addressHideTitle") }}</span
-              >
+              >{{ $t("addressHideTitle") }}</span>
               <img
                 style="margin-left: 12px;"
                 class="icon16"
@@ -496,15 +510,12 @@
                   :size="220"
                   level="H"
                 ></qrcode-vue>
-                <span class="font-16 detail"
-                  >{{ $t("addressScanUsing") }}
+                <span class="font-16 detail">{{ $t("addressScanUsing") }}
                   <a
                     href="https://nano.nebulas.io/index_en.html"
                     target="_blank"
                   >
-                    {{ $t("addressNASNano") }}</a
-                  ></span
-                >
+                    {{ $t("addressNASNano") }}</a></span>
               </div>
             </div>
           </div>
@@ -519,7 +530,10 @@
       <div class="mt20"></div>
 
       <!-- ============================ Transactions ================================ -->
-      <div class="tab" v-show="tab == 1">
+      <div
+        class="tab"
+        v-show="tab == 1"
+      >
         <div
           v-if="txs.length"
           class="d-block d-md-flex flex-row align-items-center"
@@ -530,17 +544,13 @@
             {{ $t("addressFromTotal") }}
             {{ numberAddComma(obj.txCnt) }}
             <span v-if="obj.txCnt > 1">
-              {{ $t("addressTextTransactions") }} </span
-            ><span v-else>
+              {{ $t("addressTextTransactions") }} </span><span v-else>
               {{ $t("addressTextTransaction") }}
             </span>
 
-            <span v-if="obj.pendingTxCnt != 0"
-              >({{ obj.pendingTxCnt }}
+            <span v-if="obj.pendingTxCnt != 0">({{ obj.pendingTxCnt }}
               <span v-if="obj.pendingTxCnt > 1">
-                {{ $t("addressPendingTxsText") }} </span
-              ><span v-else> {{ $t("addressPendingTxText") }} </span>)</span
-            >
+                {{ $t("addressPendingTxsText") }} </span><span v-else> {{ $t("addressPendingTxText") }} </span>)</span>
           </div>
           <div class="col-auto px-0">
             <router-link
@@ -559,34 +569,41 @@
                   fragApi + '/txs?a=' + $route.params.id + '&isPending=true'
                 "
               >
-                <span class="font-16"
-                  ><span class="addressViewAll2"></span> {{ obj.pendingTxCnt }}
+                <span class="font-16"><span class="addressViewAll2"></span> {{ obj.pendingTxCnt }}
                   <span v-if="obj.pendingTxCnt > 1">
-                    {{ $t("addressPendingTxTextPlural") }} </span
-                  ><span v-else>
+                    {{ $t("addressPendingTxTextPlural") }} </span><span v-else>
                     {{ $t("addressPendingTxTextSingular") }}
-                  </span></span
-                >
+                  </span></span>
               </router-link>
             </span>
           </div>
         </div>
 
         <div class="explorer-table-container">
-          <table v-if="txs.length" class="mt20 explorer-table list-table">
+          <table
+            v-if="txs.length"
+            class="mt20 explorer-table list-table"
+          >
             <tr
               class="font-12 font-bold font-color-000000"
               style="height: 46px; background-color: #e8e8e8;"
             >
               <th v-if="isContract"></th>
-              <th v-else style="width: 50px;"></th>
+              <th
+                v-else
+                style="width: 50px;"
+              ></th>
+              <th>Nonce</th>
               <th>{{ $t("addressTableTxHash") }}</th>
               <th>{{ $t("addressTableTxBlock") }}</th>
               <th>{{ $t("addressTableTxAge") }}</th>
               <th>{{ $t("addressTableTxFrom") }}</th>
               <th></th>
               <th>{{ $t("addressTableTxTo") }}</th>
-              <th class="align-right" id="">
+              <th
+                class="align-right"
+                id=""
+              >
                 {{ $t("addressPendingTxTextSingular") }}
               </th>
               <th class="align-right pr-3">
@@ -607,19 +624,23 @@
                 />
               </td>
               <td v-else>
-                <img class="icon40" v-bind:src="statusIcon(o, o.status)" />
+                <img
+                  class="icon40"
+                  v-bind:src="statusIcon(o, o.status)"
+                />
+              </td>
+              <td class="txs-nonce font-color-555555 font-14">
+                <span>{{o.nonce}}</span>
               </td>
               <td class="txs-hash">
                 <router-link v-bind:to="fragApi + '/tx/' + o.hash">
-                  <span
-                    v-bind:class="[
+                  <span v-bind:class="[
                       o.status === 0 ? 'hash-failed' : 'hash-normal',
                       'monospace'
-                    ]"
-                    >{{ o.hash }}</span
-                  >
+                    ]">{{ o.hash }}</span>
                 </router-link>
               </td>
+
               <td class="txs-block">
                 <router-link
                   class="font-14"
@@ -628,14 +649,17 @@
                 >
                   <span>{{ o.block.height }}</span>
                 </router-link>
-                <i class="font-14 font-color-000000" v-else>
+                <i
+                  class="font-14 font-color-000000"
+                  v-else
+                >
                   {{ $t("addressPendingText") }}
                 </i>
               </td>
               <td class="time font-color-555555 font-14">
                 <div>
                   <div>
-                   {{ timeConversion(o.timestamp)}}
+                    {{ timeConversion(o.timestamp)}}
                   </div>
                   <div class="down-arrow-tip">
                     {{
@@ -649,14 +673,11 @@
                 </div>
               </td>
               <td class="tdxxxwddd txs-from-to monospace">
-                <vue-blockies
-                  v-bind:address="o.from.alias || o.from.hash"
-                ></vue-blockies>
+                <vue-blockies v-bind:address="o.from.alias || o.from.hash"></vue-blockies>
                 <span
                   class="fromTo font-14 font-color-000000"
                   v-if="o.from.hash == $route.params.id"
-                  >{{ o.from.alias || o.from.hash }}</span
-                >
+                >{{ o.from.alias || o.from.hash }}</span>
                 <router-link
                   v-else
                   v-bind:to="fragApi + '/address/' + o.from.hash"
@@ -667,10 +688,16 @@
                 </router-link>
               </td>
               <td style="padding: 10px;">
-                <img class="icon16" src="../../static/img/ic_arrow_right.png" />
+                <img
+                  class="icon16"
+                  src="../../static/img/ic_arrow_right.png"
+                />
               </td>
               <td class="tdxxxwddd txs-from-to monospace">
-                <div v-if="o.type === 'call'" class="container-tip">
+                <div
+                  v-if="o.type === 'call'"
+                  class="container-tip"
+                >
                   <span class="tip down-arrow-tip font-15 shadow">
                     {{ $t("addressSmartContract") }}
                   </span>
@@ -679,14 +706,11 @@
                     src="../../static/img/icon_tx_type_contract.png"
                   />
                 </div>
-                <vue-blockies
-                  v-bind:address="o.to.alias || o.to.hash"
-                ></vue-blockies>
+                <vue-blockies v-bind:address="o.to.alias || o.to.hash"></vue-blockies>
                 <span
                   class="fromTo font-14 font-color-000000"
                   v-if="o.to.hash == $route.params.id"
-                  >{{ o.to.alias || o.to.hash }}</span
-                >
+                >{{ o.to.alias || o.to.hash }}</span>
                 <router-link
                   v-else
                   v-bind:to="fragApi + '/address/' + o.to.hash"
@@ -696,10 +720,16 @@
                   }}</span>
                 </router-link>
               </td>
-              <td v-if="isNatVoteTransfer(o)" class="amount align-right">
+              <td
+                v-if="isNatVoteTransfer(o)"
+                class="amount align-right"
+              >
                 {{ natAmount(o) }} NAT
               </td>
-              <td v-else class="amount align-right">
+              <td
+                v-else
+                class="amount align-right"
+              >
                 {{ tokenAmount(o.value, o.decimal) }} NAS
               </td>
               <td class="txfee align-right pr-3">
@@ -721,19 +751,14 @@
               class="d-block d-md-inline-block align-middle mt-1 mt-md-0"
               v-bind:to="fragApi + '/txs?a=' + $route.params.id"
             >
-              <span class="font-16"
-                >{{ $t("addressViewAll3") }}
+              <span class="font-16">{{ $t("addressViewAll3") }}
                 {{ obj.txCnt }}
-                <span
-                  v-if="obj.txCnt > 1"
-                >
-				{{ $t("addressTxs") }}
-				</span
-                ><span v-else>
-					
-					{{ $t("addressTx") }}
-					</span
-              ></span>
+                <span v-if="obj.txCnt > 1">
+                  {{ $t("addressTxs") }}
+                </span><span v-else>
+
+                  {{ $t("addressTx") }}
+                </span></span>
             </router-link>
             <span v-if="obj.pendingTxCnt != 0">
               <span class="d-none d-md-inline-block px-2">|</span>
@@ -743,21 +768,14 @@
                   fragApi + '/txs?a=' + $route.params.id + '&isPending=true'
                 "
               >
-                <span class="font-16"
-                  >{{ $t("addressViewAll4") }}
+                <span class="font-16">{{ $t("addressViewAll4") }}
                   {{ obj.pendingTxCnt }}
-                  <span
-                    v-if="obj.pendingTxCnt > 1"
-                  >
-				  {{ $t("addressPendingTextPlural") }}
-				  </span
-                  ><span
-                    v-else
-                  >
-				  
-				  {{ $t("addressPendingTextSingular") }}
-				  </span
-                ></span>
+                  <span v-if="obj.pendingTxCnt > 1">
+                    {{ $t("addressPendingTextPlural") }}
+                  </span><span v-else>
+
+                    {{ $t("addressPendingTextSingular") }}
+                  </span></span>
               </router-link>
             </span>
           </div>
@@ -774,60 +792,50 @@
           />
           <br />
           <div style="margin-top: 12px;">
-            <span
-            >
-			
-			{{ $t("addressNoContent") }}
-			</span>
+            <span>
+
+              {{ $t("addressNoContent") }}
+            </span>
           </div>
         </div>
       </div>
 
       <!-- ============================ NRC20 Transactions ================================ -->
-      <div class="tab" v-show="tab === 2 && !isContract">
+      <div
+        class="tab"
+        v-show="tab === 2 && !isContract"
+      >
         <div
           v-if="nrc20TxList.length"
           class="d-block d-md-flex flex-row align-items-center"
         >
           <div class="col mr-auto px-0 font-16 font-bold font-color-000000">
-            <span
-              v-if="nrc20TxCnt > 1"
-            >
-			{{ $t("addressLatestTitlePlural") }}
-			</span>
-			</span
-            ><span
-              v-else
-            >
-			
-			{{ $t("addressLatestTitleSingular") }}
-			</span>
+            <span v-if="nrc20TxCnt > 1">
+              {{ $t("addressLatestTitlePlural") }}
+            </span>
+            </span><span v-else>
+
+              {{ $t("addressLatestTitleSingular") }}
+            </span>
             {{ nrc20TxList.length }}
             {{ nrc20TxList.length > 1 ? "txs" : "tx" }}
             {{ $t("addressFromTotal2") }}
             {{ numberAddComma(nrc20TxCnt) }}
-            <span
-              v-if="nrc20TxCnt > 1"
-            >
-			{{ $t("addressTransactionsPlural") }}
-			
-			</span
-            ><span
-              v-else
-            >
-			
-			{{ $t("addressTransactionsSingular") }}
-			</span>
+            <span v-if="nrc20TxCnt > 1">
+              {{ $t("addressTransactionsPlural") }}
+
+            </span><span v-else>
+
+              {{ $t("addressTransactionsSingular") }}
+            </span>
           </div>
           <div class="col-auto px-0">
             <router-link
               class="d-block d-md-inline-block align-middle mt-1 mt-md-0"
               v-bind:to="fragApi + '/txs-nrc20?a=' + $route.params.id"
             >
-              <span class="font-16"
-                >{{ $t("addressViewAll5") }} {{ nrc20TxCnt }}
-                {{ nrc20TxCnt > 1 ? "txs" : "tx" }}</span
-              >
+              <span class="font-16">{{ $t("addressViewAll5") }} {{ nrc20TxCnt }}
+                {{ nrc20TxCnt > 1 ? "txs" : "tx" }}</span>
             </router-link>
           </div>
         </div>
@@ -848,32 +856,31 @@
               <th>{{ $t("addressTableFrom2") }}</th>
               <th></th>
               <th>{{ $t("addressTableTo2") }}</th>
-              <th
-                class="align-right"
-              >
-			  
-			  {{ $t("addressTableValue2") }}
-			  </th>
-              <th
-                class="align-right pr-3"
-              >
-			  {{ $t("addressTableTxFee2") }}
-			  </th>
+              <th class="align-right">
+
+                {{ $t("addressTableValue2") }}
+              </th>
+              <th class="align-right pr-3">
+                {{ $t("addressTableTxFee2") }}
+              </th>
             </tr>
 
-            <tr v-for="(o, i) in nrc20TxList" :key="i">
+            <tr
+              v-for="(o, i) in nrc20TxList"
+              :key="i"
+            >
               <td>
-                <img class="icon40" v-bind:src="statusIcon(o, o.status)" />
+                <img
+                  class="icon40"
+                  v-bind:src="statusIcon(o, o.status)"
+                />
               </td>
               <td class="txs-hash">
                 <router-link v-bind:to="fragApi + '/tx/' + o.hash">
-                  <span
-                    v-bind:class="[
+                  <span v-bind:class="[
                       o.status === 0 ? 'hash-failed' : 'hash-normal',
                       'monospace'
-                    ]"
-                    >{{ o.hash }}</span
-                  >
+                    ]">{{ o.hash }}</span>
                 </router-link>
               </td>
 
@@ -889,8 +896,8 @@
                   class="font-14 font-color-000000"
                   v-else
                 >
-				{{ $t("addressPendingText3") }}
-				</i>
+                  {{ $t("addressPendingText3") }}
+                </i>
               </td>
               <td class="time font-color-555555 font-14">
                 <div>
@@ -907,14 +914,11 @@
                 </div>
               </td>
               <td class="tdxxxwddd txs-from-to monospace">
-                <vue-blockies
-                  v-bind:address="o.from.alias || o.from.hash"
-                ></vue-blockies>
+                <vue-blockies v-bind:address="o.from.alias || o.from.hash"></vue-blockies>
                 <span
                   class="fromTo font-14 font-color-000000"
                   v-if="o.from.hash == $route.params.id"
-                  >{{ o.from.alias || o.from.hash }}</span
-                >
+                >{{ o.from.alias || o.from.hash }}</span>
                 <router-link
                   v-else
                   v-bind:to="fragApi + '/address/' + o.from.hash"
@@ -925,17 +929,17 @@
                 </router-link>
               </td>
               <td style="padding: 10px;">
-                <img class="icon16" src="../../static/img/ic_arrow_right.png" />
+                <img
+                  class="icon16"
+                  src="../../static/img/ic_arrow_right.png"
+                />
               </td>
               <td class="tdxxxwddd txs-from-to monospace">
-                <vue-blockies
-                  v-bind:address="o.to.alias || o.to.hash"
-                ></vue-blockies>
+                <vue-blockies v-bind:address="o.to.alias || o.to.hash"></vue-blockies>
                 <span
                   class="fromTo font-14 font-color-000000"
                   v-if="o.to.hash == $route.params.id"
-                  >{{ o.to.alias || o.to.hash }}</span
-                >
+                >{{ o.to.alias || o.to.hash }}</span>
                 <router-link
                   v-else
                   v-bind:to="fragApi + '/address/' + o.to.hash"
@@ -965,10 +969,8 @@
               class="d-block d-md-inline-block align-middle mt-1 mt-md-0"
               v-bind:to="fragApi + '/txs-nrc20?a=' + $route.params.id"
             >
-              <span class="font-16"
-                >{{ $t("addressViewAll6") }} {{ nrc20TxCnt }}
-                {{ nrc20TxCnt > 1 ? "txs" : "tx" }}</span
-              >
+              <span class="font-16">{{ $t("addressViewAll6") }} {{ nrc20TxCnt }}
+                {{ nrc20TxCnt > 1 ? "txs" : "tx" }}</span>
             </router-link>
           </div>
         </div>
@@ -983,17 +985,18 @@
           />
           <br />
           <div style="margin-top: 12px;">
-            <span
-              class="text-no-content"
-            >
-			{{ $t("addressNoContent2") }}
-			</span>
+            <span class="text-no-content">
+              {{ $t("addressNoContent2") }}
+            </span>
           </div>
         </div>
       </div>
 
       <!-- =========================== NAX Changes ================================= -->
-      <div class="tab" v-show="tab === 3 && !isContract">
+      <div
+        class="tab"
+        v-show="tab === 3 && !isContract"
+      >
         <div class="explorer-table-container">
           <table
             v-if="naxChangeList.length"
@@ -1007,16 +1010,20 @@
               <th>{{ $t("addressTableValue3") }}</th>
               <th>{{ $t("addressTableAge3") }}</th>
               <th>{{ $t("addressTableBlock3") }}</th>
-              <th
-                style="width: 25%;"
-              >
-			  
-			  {{ $t("addressTableSource") }}
-			  </th>
+              <th style="width: 25%;">
+
+                {{ $t("addressTableSource") }}
+              </th>
             </tr>
-            <tr v-for="(o, i) in naxChangeList" :key="i">
+            <tr
+              v-for="(o, i) in naxChangeList"
+              :key="i"
+            >
               <td class="text-center">
-                <img :src="natIcon(o.profit)" width="30px" />
+                <img
+                  :src="natIcon(o.profit)"
+                  width="30px"
+                />
               </td>
               <td class="amount">{{ tokenAmount(o.profit, 9) }} NAX</td>
               <td class="time font-color-555555 font-14">
@@ -1043,31 +1050,30 @@
                 >
                   <span>{{ o.block }}</span>
                 </router-link>
-                <i class="font-14 font-color-000000" v-else>{{
+                <i
+                  class="font-14 font-color-000000"
+                  v-else
+                >{{
                   $t("addressPendingText4")
                 }}</i>
               </td>
               <td class="font-14">
-                <div
-                  v-if="o.source === 0"
-                >
-				
-				{{ $t("addressPledgeRewards") }}
-				</div>
+                <div v-if="o.source === 0">
+
+                  {{ $t("addressPledgeRewards") }}
+                </div>
                 <div v-if="o.source === 1">
                   <span>NAX Vote</span>
                   <router-link
                     v-bind:to="fragApi + '/tx/' + o.txHash"
                     class="ml-2"
                   >
-                    <span
-                      >tx#
+                    <span>tx#
                       {{
                         o.txHash.slice(0, 6) +
                           "..." +
                           o.txHash.slice(o.txHash.length - 6)
-                      }}</span
-                    >
+                      }}</span>
                   </router-link>
                 </div>
               </td>
@@ -1097,17 +1103,18 @@
           />
           <br />
           <div style="margin-top: 12px;">
-            <span
-              class="text-no-content"
-            >
-			{{ $t("addressNoContent3") }}
-			</span>
+            <span class="text-no-content">
+              {{ $t("addressNoContent3") }}
+            </span>
           </div>
         </div>
       </div>
 
       <!-- =========================== NAT Changes ================================= -->
-      <div class="tab" v-show="tab === 4 && !isContract">
+      <div
+        class="tab"
+        v-show="tab === 4 && !isContract"
+      >
         <div class="explorer-table-container">
           <table
             v-if="natChangeList.length"
@@ -1121,22 +1128,26 @@
               <th>{{ $t("addressTableValue4") }}</th>
               <th>{{ $t("addressTableAge4") }}</th>
               <th>{{ $t("addressTableBlock4") }}</th>
-              <th
-                style="width: 25%;"
-              >
-			  
-			  {{ $t("addressTableSource2") }}
-			  </th>
+              <th style="width: 25%;">
+
+                {{ $t("addressTableSource2") }}
+              </th>
             </tr>
-            <tr v-for="(o, i) in natChangeList" :key="i">
+            <tr
+              v-for="(o, i) in natChangeList"
+              :key="i"
+            >
               <td class="text-center">
-                <img :src="natIcon(o.amount)" width="30px" />
+                <img
+                  :src="natIcon(o.amount)"
+                  width="30px"
+                />
               </td>
               <td class="amount">{{ tokenAmount(o.amount, 18) }} NAT</td>
               <td class="time font-color-555555 font-14">
                 <div>
                   <div>
-                   {{ timeConversion(o.timestamp) }}
+                    {{ timeConversion(o.timestamp) }}
                   </div>
                   <div class="down-arrow-tip">
                     {{
@@ -1161,47 +1172,39 @@
                   class="font-14 font-color-000000"
                   v-else
                 >
-				{{ $t("addressPendingText5") }}
-				</i>
+                  {{ $t("addressPendingText5") }}
+                </i>
               </td>
               <td class="font-14">
                 <div v-if="o.source === 0">
                   <router-link v-bind:to="fragApi + '/tx/' + o.txHash">
-                    <span
-                      >tx#
+                    <span>tx#
                       {{
                         o.txHash.slice(0, 6) +
                           "..." +
                           o.txHash.slice(o.txHash.length - 6)
-                      }}</span
-                    >
+                      }}</span>
                   </router-link>
                 </div>
-                <div
-                  v-if="o.source === 1"
-                >
-				{{ $t("addressNRIncentive") }}
-				</div>
-                <div
-                  v-if="o.source === 2"
-                >
-				
-				{{ $t("addressPledgeRewards") }}
-				</div>
+                <div v-if="o.source === 1">
+                  {{ $t("addressNRIncentive") }}
+                </div>
+                <div v-if="o.source === 2">
+
+                  {{ $t("addressPledgeRewards") }}
+                </div>
                 <div v-if="o.source === 3">
                   {{ $t("addressNATVote") }}
                   <router-link
                     v-bind:to="fragApi + '/tx/' + o.txHash"
                     class="ml-2"
                   >
-                    <span
-                      >tx#
+                    <span>tx#
                       {{
                         o.txHash.slice(0, 6) +
                           "..." +
                           o.txHash.slice(o.txHash.length - 6)
-                      }}</span
-                    >
+                      }}</span>
                   </router-link>
                 </div>
               </td>
@@ -1231,17 +1234,18 @@
           />
           <br />
           <div style="margin-top: 12px;">
-            <span
-              class="text-no-content"
-            >
-			{{ $t("addressNoContent4") }}
-			</span>
+            <span class="text-no-content">
+              {{ $t("addressNoContent4") }}
+            </span>
           </div>
         </div>
       </div>
 
       <!-- ============================== code ============================== -->
-      <div class="tab" v-show="tab == 2 && isContract">
+      <div
+        class="tab"
+        v-show="tab == 2 && isContract"
+      >
         <table class="mt20 table">
           <tr>
             <pre><code class=language-javascript v-html=formatCode></code></pre>

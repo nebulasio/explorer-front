@@ -73,16 +73,41 @@
     display: none;
   }
 }
+
+// event
+.tx-event {
+  padding: 5px 0;
+  &:not(:last-child) {
+    border-bottom: 1px solid #dee2e6;
+  }
+
+  .tx-event-topic {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .tx-event-func {
+    background-color: #dee2e6;
+    padding: 0px 5px;
+    margin: 0 5px;
+  }
+}
 </style>
 <template>
-  <div class="vue-tx" v-bind:triggerComputed="urlChange">
+  <div
+    class="vue-tx"
+    v-bind:triggerComputed="urlChange"
+  >
     <vue-bread
       title="Transaction"
       :subtitle="$route.params.id"
       :subtitlemonospaced="$route.params.id"
     >
     </vue-bread>
-    <div v-if="tx" class="container">
+    <div
+      v-if="tx"
+      class="container"
+    >
       <div class="font-24 font-bold font-color-000000 table-title">
         {{ $t("txOverview") }}
       </div>
@@ -114,10 +139,12 @@
                 class="icon18"
                 src="../../static/img/ic_tx_status_failed.png?v=20190110"
               />
-              <span class="font-color-F04434" style="margin-left: 10px;">
-                {{ $t("txFail") }}
-                ( {{ tx.executeError }} )</span
+              <span
+                class="font-color-F04434"
+                style="margin-left: 10px;"
               >
+                {{ $t("txFail") }}
+                ( {{ tx.executeError }} )</span>
             </td>
             <td
               class="d-flex align-items-center"
@@ -128,7 +155,10 @@
                 class="icon18"
                 src="../../static/img/ic_tx_status_success.png"
               />
-              <span class="font-color-07A656" style="margin-left: 10px;">
+              <span
+                class="font-color-07A656"
+                style="margin-left: 10px;"
+              >
                 {{ $t("txSuccess") }}
               </span>
             </td>
@@ -141,13 +171,19 @@
                 class="icon18"
                 src="../../static/img/ic_tx_status_pending.png"
               />
-              <span class="font-color-F8BB08" style="margin-left: 10px;">
+              <span
+                class="font-color-F8BB08"
+                style="margin-left: 10px;"
+              >
                 {{ $t("txPending") }}
               </span>
             </td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txBlockHeight") }}
             </td>
             <td>
@@ -167,7 +203,10 @@
             </td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txTimeStamp") }}
             </td>
             <td class="font-16 font-color-000000">
@@ -179,7 +218,10 @@
             </td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txFromText") }}
             </td>
             <td>
@@ -192,7 +234,10 @@
             </td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txToText") }}
             </td>
             <td v-if="tx.type === 'call'">
@@ -203,7 +248,10 @@
                 v-if="tx.to"
                 v-bind:to="fragApi + '/address/' + tx.to.hash"
               >
-                <span style="margin-left: 20px;" class="font-16 monospace">{{
+                <span
+                  style="margin-left: 20px;"
+                  class="font-16 monospace"
+                >{{
                   tx.to.hash
                 }}</span>
               </router-link>
@@ -229,8 +277,14 @@
               </router-link>
             </td>
           </tr>
-          <tr v-if="isTokenTransfer" class="font-16">
-            <td class="font-color-555555" style="padding-left: 24px;">
+          <tr
+            v-if="isTokenTransfer"
+            class="font-16"
+          >
+            <td
+              class="font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txTokenTransferred") }}
             </td>
             <td>
@@ -256,28 +310,41 @@
                     JSON.parse(JSON.parse(tx.data).Args)[0]
                 "
               >
-                <span class="monospace"
-                  >{{ JSON.parse(JSON.parse(tx.data).Args)[0] }}
+                <span class="monospace">{{ JSON.parse(JSON.parse(tx.data).Args)[0] }}
                 </span>
               </router-link>
               <span class="font-color-000000">
                 {{ $t("txFor") }}
 
-                {{ tokenAmount }}</span
+                {{ tokenAmount }}</span>
+              <div
+                class="token-name"
+                v-if="tx.tokenName"
               >
-              <div class="token-name" v-if="tx.tokenName">
-                <a href="#" @click="search(tx.tokenName)">{{ tx.tokenName }}</a>
+                <a
+                  href="#"
+                  @click="search(tx.tokenName)"
+                >{{ tx.tokenName }}</a>
               </div>
             </td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txValue") }}
             </td>
-            <td v-if="isNatVoteTransfer" class="font-16 font-color-000000">
+            <td
+              v-if="isNatVoteTransfer"
+              class="font-16 font-color-000000"
+            >
               {{ natAmount }} NAT
             </td>
-            <td v-else class="font-16 font-color-000000">
+            <td
+              v-else
+              class="font-16 font-color-000000"
+            >
               {{ nasAmount(tx.value) }} NAS
             </td>
           </tr>
@@ -301,11 +368,13 @@
               class="icon18"
               src="../../static/img/ic_tx_status_failed.png?v=20190110"
             />
-            <span class="font-color-F04434" style="margin-left: 10px;">
+            <span
+              class="font-color-F04434"
+              style="margin-left: 10px;"
+            >
               {{ $t("txTxFailStatus") }}
               (
-              {{ tx.executeError }} )</span
-            >
+              {{ tx.executeError }} )</span>
           </td>
           <td
             class="detail d-flex align-items-center"
@@ -316,7 +385,10 @@
               class="icon18"
               src="../../static/img/ic_tx_status_success.png"
             />
-            <span class="font-color-07A656" style="margin-left: 10px;">
+            <span
+              class="font-color-07A656"
+              style="margin-left: 10px;"
+            >
               {{ $t("txTxSuccessStatus") }}
             </span>
           </td>
@@ -329,7 +401,10 @@
               class="icon18"
               src="../../static/img/ic_tx_status_pending.png"
             />
-            <span class="font-color-F8BB08" style="margin-left: 10px;">
+            <span
+              class="font-color-F8BB08"
+              style="margin-left: 10px;"
+            >
               {{ $t("txTxPendingStatus") }}
             </span>
           </td>
@@ -372,8 +447,14 @@
         </div>
         <div>
           {{ $t("txToText2") }}
-          <div v-if="tx.type == 'call'" class="detail">
-            <span class="font-color-000000" style="margin-right: 20px;">
+          <div
+            v-if="tx.type == 'call'"
+            class="detail"
+          >
+            <span
+              class="font-color-000000"
+              style="margin-right: 20px;"
+            >
               {{ $t("txContractText") }}
             </span>
             <router-link
@@ -395,7 +476,10 @@
               )
             </div>
           </div>
-          <div v-else class="detail">
+          <div
+            v-else
+            class="detail"
+          >
             <router-link
               v-if="tx.to"
               v-bind:to="fragApi + '/address/' + tx.to.hash"
@@ -427,23 +511,33 @@
                 fragApi + '/address/' + JSON.parse(JSON.parse(tx.data).Args)[0]
               "
             >
-              <span class="monospace"
-                >{{ JSON.parse(JSON.parse(tx.data).Args)[0] }}
+              <span class="monospace">{{ JSON.parse(JSON.parse(tx.data).Args)[0] }}
               </span>
             </router-link>
             <span class="font-color-000000">
               {{ $t("txFor2") }}
-              {{ tokenAmount }}</span
+              {{ tokenAmount }}</span>
+            <div
+              class="token-name"
+              v-if="tx.tokenName"
             >
-            <div class="token-name" v-if="tx.tokenName">
-              <a href="#" @click="search(tx.tokenName)">{{ tx.tokenName }}</a>
+              <a
+                href="#"
+                @click="search(tx.tokenName)"
+              >{{ tx.tokenName }}</a>
             </div>
           </div>
         </div>
         <div>
           Value:
-          <div v-if="isNatVoteTransfer" class="detail">{{ natAmount }} NAT</div>
-          <div v-else class="detail">{{ nasAmount(tx.value) }} NAS</div>
+          <div
+            v-if="isNatVoteTransfer"
+            class="detail"
+          >{{ natAmount }} NAT</div>
+          <div
+            v-else
+            class="detail"
+          >{{ nasAmount(tx.value) }} NAS</div>
         </div>
       </div>
 
@@ -464,37 +558,57 @@
             </td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txGasUsedByTx") }}
             </td>
             <td class="font-color-000000 font-16">
-              <span v-if="tx.isPending === true" id="txPendingText2"></span
-              ><span v-else>{{ numberAddComma(tx.gasUsed) }}</span>
+              <span
+                v-if="tx.isPending === true"
+                id="txPendingText2"
+              ></span><span v-else>{{ numberAddComma(tx.gasUsed) }}</span>
             </td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txGasPrice") }}
             </td>
             <td class="font-color-000000 font-16">{{ toWei(tx.gasPrice) }}</td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txActualTxCostFee") }}
             </td>
             <td class="font-color-000000 font-16">{{ toWei(tx.txFee) }}</td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txNonce") }}
             </td>
             <td class="font-color-000000 font-16">{{ tx.nonce }}</td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txTxType") }}
             </td>
-            <td class="font-color-000000 font-16" v-if="tx.type === 'deploy'">
+            <td
+              class="font-color-000000 font-16"
+              v-if="tx.type === 'deploy'"
+            >
               {{ txType }} (
 
               {{ $t("txContractAddress") }}
@@ -503,37 +617,61 @@
                 v-if="tx.to"
                 v-bind:to="fragApi + '/address/' + tx.contractAddress"
               >
-                <span> {{ tx.contractAddress }}</span> </router-link
-              >)
+                <span> {{ tx.contractAddress }}</span>
+              </router-link>)
             </td>
-            <td class="font-color-000000 font-16" v-else>{{ txType }}</td>
+            <td
+              class="font-color-000000 font-16"
+              v-else
+            >{{ txType }}</td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txSourceType") }}
             </td>
-            <td class="font-color-000000 font-16" v-if="tx.type === 'deploy'">
+            <td
+              class="font-color-000000 font-16"
+              v-if="tx.type === 'deploy'"
+            >
               {{ JSON.parse(tx.data).SourceType }}
             </td>
             <td v-else></td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txArgs") }}
             </td>
-            <td class="font-color-000000 font-16" v-if="tx.type === 'deploy'">
+            <td
+              class="font-color-000000 font-16"
+              v-if="tx.type === 'deploy'"
+            >
               {{ JSON.parse(tx.data).Args }}
             </td>
             <td v-else></td>
           </tr>
           <tr>
-            <td class="font-16 font-color-555555" style="padding-left: 24px;">
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
               {{ $t("txPayloadData") }}
             </td>
-            <td v-if="tx.type === 'binary'" class="text">
+            <td
+              v-if="tx.type === 'binary'"
+              class="text"
+            >
               {{ tx.data }}
             </td>
-            <td v-else class="code">
+            <td
+              v-else
+              class="code"
+            >
               <a
                 href="#"
                 v-on:click.prevent="showOrHidePayload()"
@@ -558,19 +696,69 @@
               <pre><code class="language-javascript" v-html=formatCode></code></pre>
             </td>
           </tr>
+
+          <tr>
+            <td
+              class="font-16 font-color-555555"
+              style="padding-left: 24px;"
+            >
+              Event
+            </td>
+            <td>
+              <a
+                href="#"
+                v-on:click.prevent="showOrHideEvent()"
+                style="text-decoration: none;"
+              >
+                {{ $t("txViewAll") }}
+                <img
+                  style="margin-left: 12px;"
+                  class="icon16"
+                  v-bind:src="
+                    isShowEvent
+                      ? '../../static/img/ic_payload_arrow_up.png'
+                      : '../../static/img/ic_payload_arrow_down.png'
+                  "
+                />
+              </a>
+
+              <div
+                class="tx-event"
+                v-for="(e, i) in tx.events"
+                :key="i"
+              >
+                <div class="tx-event-topic">
+                  {{ renderEvent(e).topic }}
+
+                  <span
+                    v-if="renderEvent(e).func !== ''"
+                    class="tx-event-func"
+                  >
+                    {{ renderEvent(e).func }}
+                  </span>
+                </div>
+                <div
+                  v-show="isShowEvent"
+                  class="tx-event-data"
+                >
+                  <vue-json-pretty
+                    highlight-mouseover-node="true"
+                    :data="renderEvent(e).data"
+                  >
+                  </vue-json-pretty>
+                </div>
+              </div>
+            </td>
+          </tr>
         </table>
       </div>
-      <!--ATP底部广告位-->
-      <div class="flex atlaspAds-bottom" id="atlaspAds-bottom"></div>
-      <div class="flex atlaspAds-bottom" id="atlaspAds-mobile"></div>
     </div>
-    <!--ATP侧边栏广告位-->
-    <div class="flex atlaspAds" id="atlaspAds-side"></div>
   </div>
 </template>
 <script>
-// import { EventBus } from "../events.js";
-// import { jsonStrings } from "../l10nstrings.js";
+import VueJsonPretty from "vue-json-pretty";
+import "vue-json-pretty/lib/styles.css";
+
 var jsBeautify = require("js-beautify").js_beautify,
   prism = require("prismjs"),
   api = require("@/assets/api"),
@@ -585,7 +773,8 @@ require("prismjs/themes/prism.css");
 module.exports = {
   components: {
     "vue-bread": require("@/components/vue-bread").default,
-    "vue-tab-buttons": require("@/components/vue-tab-buttons").default
+    "vue-tab-buttons": require("@/components/vue-tab-buttons").default,
+    VueJsonPretty
   },
   computed: {
     formatCode() {
@@ -696,15 +885,6 @@ module.exports = {
       var decimals = BigNumber("1e+18");
       return amount.div(decimals).toFormat();
     }
-    // errMsg() {
-    //	 if (this.tx.executeError === 'insufficient balance') {
-    //		 return 'Insufficient Balance of Transfer Address';
-    //	 } else if (this.tx.executeError === 'insufficient gas') {
-    //		 return 'Out of Gas';
-    //	 } else {
-    //		 return 'Contract Execution Failed';
-    //	 }
-    // }
   },
   data() {
     return {
@@ -712,74 +892,19 @@ module.exports = {
       tab: 0,
       tabButtons: ["Overview"],
       tx: null,
-      isShowPayload: false,
+      isShowPayload: true,
+      isShowEvent: false,
       nothing: ""
     };
   },
   methods: {
-    // removeTempInterval() {
-    //   clearInterval(this.tempInterval);
-    // },
-    // checkStaticTranslations() {
-    //   // Unique elements, identified by id attr
-    //   var myLocalizableElements = document.getElementsByClassName(
-    //     "txlocalizable"
-    //   );
-    //   var totalElements = myLocalizableElements.length;
-    //   var i;
-    //   for (i = 0; i < totalElements; i++) {
-    //     var elementId = myLocalizableElements[i].getAttribute("id");
-    //     if (myLocalizableElements[i].getAttribute("localize")) {
-    //       var elementAttribute = myLocalizableElements[i].getAttribute(
-    //         "localize"
-    //       );
-    //       myLocalizableElements[i].setAttribute(
-    //         elementAttribute,
-    //         jsonStrings[this.$selectedLanguage][elementId]
-    //       );
-    //     } else {
-    //       myLocalizableElements[i].innerText =
-    //         jsonStrings[this.$selectedLanguage][elementId];
-    //     }
-    //   }
-
-    //   myLocalizableElements = document.getElementsByClassName("bread-title");
-
-    //   totalElements = myLocalizableElements.length;
-    //   for (i = 0; i < totalElements; i++) {
-    //     myLocalizableElements[i].innerText =
-    //       jsonStrings[this.$selectedLanguage]["txTitle"];
-    //   }
-    // },
-    // checkDynamicTranslations() {
-    //   // Multiple elements, identified with name attr
-    //   var myMultiLocalizableElements = document.getElementsByClassName(
-    //     "txmultilocalizable"
-    //   );
-    //   var totalElements = myMultiLocalizableElements.length;
-    //   var i;
-    //   for (i = 0; i < totalElements; i++) {
-    //     var elementName = myMultiLocalizableElements[i].getAttribute("name");
-    //     if (myMultiLocalizableElements[i].getAttribute("localize")) {
-    //       var elementAttribute = myMultiLocalizableElements[i].getAttribute(
-    //         "localize"
-    //       );
-    //       myMultiLocalizableElements[i].setAttribute(
-    //         elementAttribute,
-    //         jsonStrings[this.$selectedLanguage][elementName]
-    //       );
-    //     } else {
-    //       myMultiLocalizableElements[i].innerText =
-    //         jsonStrings[this.$selectedLanguage][elementName];
-    //     }
-    //   }
-    // },
     showOrHidePayload() {
       this.isShowPayload = !this.isShowPayload;
-      // setTimeout(() => {
-      //	 window.scrollTo(0, 10000);
-      // }, 0);
     },
+    showOrHideEvent() {
+      this.isShowEvent = !this.isShowEvent;
+    },
+
     numberAddComma(n) {
       return utility.numberAddComma(n);
     },
@@ -836,6 +961,20 @@ module.exports = {
           );
         }
       );
+    },
+    renderEvent(event) {
+      let topic = event.topic;
+      let func = "";
+      const eventData = JSON.parse(event.data);
+      if (event.topic === "chain.innerContract") {
+        func = eventData.function;
+      }
+
+      return {
+        topic,
+        data: eventData,
+        func
+      };
     }
   }
 };

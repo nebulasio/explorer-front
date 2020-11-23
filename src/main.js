@@ -10,6 +10,8 @@ import api from "./api";
 import VueMobileDetection from "vue-mobile-detection";
 import moment from "moment";
 
+import "./utils/filters"; // set global filter
+
 Vue.prototype.$i18nRoute = Trans.i18nRoute.bind(Trans);
 Vue.prototype.$moment = moment;
 Vue.config.productionTip = false;
@@ -52,8 +54,8 @@ Vue.use(VueAnalytics, {
   customResourceURL: "https://www.google-analytics.com/analytics.js",
   debug: {
     enabled: !isProd,
-    sendHitTask: isProd
-  }
+    sendHitTask: isProd,
+  },
 });
 
 Number.prototype.pad = function(size) {
@@ -105,9 +107,9 @@ Date.prototype.getWeekNumber = function() {
 
 new Vue({
   data: {
-    showModalLoading: false
+    showModalLoading: false,
   },
   i18n,
   router,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
