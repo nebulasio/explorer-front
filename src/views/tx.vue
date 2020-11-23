@@ -744,6 +744,7 @@
                   <vue-json-pretty
                     highlight-mouseover-node="true"
                     :data="renderEvent(e).data"
+                    :custom-value-formatter="customEventDataFormatter"
                   >
                   </vue-json-pretty>
                 </div>
@@ -758,6 +759,7 @@
 <script>
 import VueJsonPretty from "vue-json-pretty";
 import "vue-json-pretty/lib/styles.css";
+import { isNebAddress } from "@/utils/neb";
 
 var jsBeautify = require("js-beautify").js_beautify,
   prism = require("prismjs"),
@@ -975,6 +977,30 @@ module.exports = {
         data: eventData,
         func
       };
+    },
+    customEventDataFormatter(data, key, parent, defaultFormatted) {
+      if (key === "from" || key === "to") {
+        return `<a href="#${this.fragApi +
+          "/address/" +
+          data}" target="_blank">"${data}"</a>`;
+      }
+
+      if (key === "args") {
+        let dataArr = JSON.parse(data);
+        dataArr = dataArr.map((d, index) => {
+          if (isNebAddress(d)) {
+            return `<a href="#${this.fragApi +
+              "/address/" +
+              d}" target="_blank">"${d}"</a>`;
+          } else {
+            return d;
+          }
+        });
+
+        return `[${dataArr.join(",")}]`;
+      }
+
+      return defaultFormatted;
     }
   }
 };

@@ -14,7 +14,8 @@ import { apiPrefixesConfig } from "@/config";
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-  routes
+  // mode: "history",
+  routes,
 });
 
 function onBeforeEach(to, from, next) {
