@@ -185,7 +185,7 @@ export default {
             position: "bottom",
             min: 0,
             max: vote_nax_max,
-            interval: 50000000,
+            interval: 10000000,
             axisLine: {
               show: false
             },
@@ -214,7 +214,7 @@ export default {
             position: "top",
             // min: 0,
             // max: reward_nas_max,
-            interval: 10000,
+            interval: 20000,
             axisLine: {
               show: false
             },
@@ -223,7 +223,7 @@ export default {
                 color: "#3DCC85"
               },
               formatter: function(value, index) {
-                return `${toLocaleString(value)} NAS`;
+                return `${toBigNumString(value)} NAS`;
               }
             },
             axisTick: {
