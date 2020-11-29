@@ -142,6 +142,7 @@
         <table class="mt20 explorer-table list-table">
           <tr class="list-header font-12 font-bold font-color-000000">
             <th></th>
+            <th>Nonce</th>
             <th>{{ $t("transactionsTableTxHash") }}</th>
             <th>{{ $t("transactionsTableBlock") }}</th>
             <th>{{ $t("transactionsTableAge") }}</th>
@@ -163,6 +164,9 @@
                 class="icon40"
                 src="../../static/img/ic_tx_failed.png"
               />
+            </td>
+            <td class="txs-nonce font-color-555555 font-14">
+              <span>{{ o.nonce }}</span>
             </td>
             <td class="txs-hash">
               <router-link v-bind:to="fragApi + '/tx/' + o.hash">
@@ -191,7 +195,7 @@
                 ></span
               ></i>
             </td>
-            <td class="font-14 font-color-555555">
+            <td class="time font-14 font-color-555555">
               <div>
                 <span>
                   <span
@@ -204,7 +208,7 @@
                     class="txsmultilocalizable"
                   ></span>
                 </span>
-                <div class="down-arrow-tip" style="display:none;">
+                <div class="down-arrow-tip">
                   {{
                     new Date(o.timestamp)
                       .toString()
