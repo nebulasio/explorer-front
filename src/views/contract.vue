@@ -438,9 +438,17 @@
                   <span class="fromTo font-14  monospace">{{ o.to }}</span>
                 </router-link>
               </td>
-              <td class="text-right font-color-000000 font-14">
-                {{ tokenAmount(o.contractValue, decimal).shortAmount() }}
-                {{ obj.tokenName }}
+              <td class="amount text-right font-color-000000 font-14">
+                <div>
+                  <div>
+                    {{ tokenAmount(o.contractValue, decimal).shortAmount() }}
+                    {{ obj.tokenName }}
+                  </div>
+                  <div class="down-arrow-tip">
+                    {{ tokenAmount(o.contractValue, decimal) }}
+                    {{ obj.tokenName }}
+                  </div>
+                </div>
               </td>
               <td class="text-right font-14 font-color-555555 pr-3">
                 <span v-if="o.blockHeight">{{ toWei(o.txFee) }}</span>
@@ -559,22 +567,11 @@
           v-on:to="onTo"
         ></vue-pagination>
       </div>
-
-      <!--	code
-				============================================================ -->
-      <!-- <div class=tab v-show="tab == 3">
-				<table class="mt20 table">
-					<tr>
-						<pre><code class=language-javascript v-html=formatCode></code></pre>
-					</tr>
-				</table>
-			</div> -->
     </div>
   </div>
 </template>
 <script>
-// import { EventBus } from "../events.js";
-// import { jsonStrings } from "../l10nstrings.js";
+
 var api = require("@/assets/api"),
   prism = require("prismjs"),
   jsBeautify = require("js-beautify").js_beautify,
@@ -588,30 +585,7 @@ module.exports = {
     "vue-tab-buttons": require("@/components/vue-tab-buttons").default,
     "vue-blockies": require("@/components/vue-blockies").default
   },
-  //   mounted() {
-  //     EventBus.$on("changeLanguage", foo => {
-  //       this.checkStaticTranslations();
-  //     });
-  //     if (typeof this.$selectedLanguage != "undefined") {
-  //       this.checkStaticTranslations();
-  //     }
-  //     this.translationsInterval = setInterval(() => {
-  //       this.checkDynamicTranslations();
-  //     }, 1000);
-  //     this.tempInterval = setInterval(() => {
-  //       this.checkStaticTranslations();
-  //       this.removeTempInterval();
-  //     }, 2000);
-  //   },
   computed: {
-    // formatCode() {
-    //	 var lang = prism.languages.javascript;
-
-    //	 if (this.obj.contractCode) {
-    //		 return prism.highlight(jsBeautify(JSON.parse(this.obj.contractCode).Source), lang);
-    //	 }
-    //	 return "0x0";
-    // },
     tabButtons() {
       return [this.$t("transfers"), this.$t("holders")];
     },
@@ -654,55 +628,6 @@ module.exports = {
     };
   },
   methods: {
-    // removeTempInterval() {
-    //   clearInterval(this.tempInterval);
-    // },
-    // checkStaticTranslations() {
-    //   // Unique elements, identified by id attr
-    //   var myLocalizableElements = document.getElementsByClassName(
-    //     "contractlocalizable"
-    //   );
-    //   var totalElements = myLocalizableElements.length;
-    //   var i;
-    //   for (i = 0; i < totalElements; i++) {
-    //     var elementId = myLocalizableElements[i].getAttribute("id");
-    //     if (myLocalizableElements[i].getAttribute("localize")) {
-    //       var elementAttribute = myLocalizableElements[i].getAttribute(
-    //         "localize"
-    //       );
-    //       myLocalizableElements[i].setAttribute(
-    //         elementAttribute,
-    //         jsonStrings[this.$selectedLanguage][elementId]
-    //       );
-    //     } else {
-    //       myLocalizableElements[i].innerText =
-    //         jsonStrings[this.$selectedLanguage][elementId];
-    //     }
-    //   }
-    // },
-    // checkDynamicTranslations() {
-    //   // Multiple elements, identified with name attr
-    //   var myMultiLocalizableElements = document.getElementsByClassName(
-    //     "contractmultilocalizable"
-    //   );
-    //   var totalElements = myMultiLocalizableElements.length;
-    //   var i;
-    //   for (i = 0; i < totalElements; i++) {
-    //     var elementName = myMultiLocalizableElements[i].getAttribute("name");
-    //     if (myMultiLocalizableElements[i].getAttribute("localize")) {
-    //       var elementAttribute = myMultiLocalizableElements[i].getAttribute(
-    //         "localize"
-    //       );
-    //       myMultiLocalizableElements[i].setAttribute(
-    //         elementAttribute,
-    //         jsonStrings[this.$selectedLanguage][elementName]
-    //       );
-    //     } else {
-    //       myMultiLocalizableElements[i].innerText =
-    //         jsonStrings[this.$selectedLanguage][elementName];
-    //     }
-    //   }
-    // },
     inOutClass(o) {
       if (o.from == this.$route.params.id) return "out";
       else if (o.to == this.$route.params.id) return "in";

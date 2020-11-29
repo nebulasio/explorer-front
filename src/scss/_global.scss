@@ -85,6 +85,30 @@ td.time:hover :nth-child(2) {
   display: block;
 }
 
+td.amount > div {
+  position: relative;
+  display: inline-block;
+}
+
+td.amount :nth-child(2) {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: none;
+  left: 50%;
+  top: -50px;
+  padding: 10px;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 1;
+}
+
+td.amount:hover :nth-child(2) {
+  display: block;
+}
+
+
 .tdxxxwddd > * {
   display: inline-block;
   max-width: 160px;
