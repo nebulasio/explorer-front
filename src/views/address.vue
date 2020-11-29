@@ -1259,14 +1259,14 @@
   </div>
 </template>
 <script>
-// import { EventBus } from "../events.js";
-// import { jsonStrings } from "../l10nstrings.js";
+
 var api = require("@/assets/api"),
   prism = require("prismjs"),
   jsBeautify = require("js-beautify").js_beautify,
   utility = require("@/assets/utility"),
   BigNumber = require("bignumber.js"),
   base64 = require("js-base64").Base64;
+
 import QrcodeVue from "qrcode.vue";
 
 module.exports = {
@@ -1278,27 +1278,7 @@ module.exports = {
     QrcodeVue
   },
   computed: {
-    // tabButtons() {
-    //   var buttons = [
-    //     jsonStrings[this.$selectedLanguage]["addressButtonsTransactions"],
-    //     jsonStrings[this.$selectedLanguage]["addressButtonsNRC20Tokens"],
-    //     jsonStrings[this.$selectedLanguage]["addressButtonsNax"],
-    //     jsonStrings[this.$selectedLanguage]["addressButtonsNat"]
-    //   ];
-    //   if (this.$route.params.api === "testnet") {
-    //     buttons = [
-    //       jsonStrings[this.$selectedLanguage]["addressButtonsTransactions"],
-    //       jsonStrings[this.$selectedLanguage]["addressButtonsNRC20Tokens"]
-    //     ]; //
-    //   }
-    //   if (this.isContract) {
-    //     buttons = [
-    //       jsonStrings[this.$selectedLanguage]["addressButtonsTransactions"],
-    //       jsonStrings[this.$selectedLanguage]["addressButtonsContractCode"]
-    //     ];
-    //   }
-    //   return buttons;
-	// },
+
 	tabButtons() {
 		let buttons = [
 			this.$t("addressButtonsTransactions"),
@@ -1461,66 +1441,6 @@ module.exports = {
     };
   },
   methods: {
-    // removeTempInterval() {
-    //   clearInterval(this.tempInterval);
-    // },
-    // checkStaticTranslations() {
-    //   // Unique elements, identified by id attr
-    //   var myLocalizableElements = document.getElementsByClassName(
-    //     "addresslocalizable"
-    //   );
-    //   var totalElements = myLocalizableElements.length;
-    //   var i;
-    //   for (i = 0; i < totalElements; i++) {
-    //     var elementId = myLocalizableElements[i].getAttribute("id");
-    //     if (myLocalizableElements[i].getAttribute("localize")) {
-    //       var elementAttribute = myLocalizableElements[i].getAttribute(
-    //         "localize"
-    //       );
-    //       myLocalizableElements[i].setAttribute(
-    //         elementAttribute,
-    //         jsonStrings[this.$selectedLanguage][elementId]
-    //       );
-    //     } else {
-    //       myLocalizableElements[i].innerText =
-    //         jsonStrings[this.$selectedLanguage][elementId];
-    //     }
-    //   }
-    //   // Other specific methods for unique elements.
-
-    //   var foo = this.$route.fullPath.split("/");
-    //   if (foo[1] == "address") {
-    //     myLocalizableElements = document.getElementsByClassName("bread-title");
-
-    //     totalElements = myLocalizableElements.length;
-    //     for (i = 0; i < totalElements; i++) {
-    //       myLocalizableElements[i].innerText =
-    //         jsonStrings[this.$selectedLanguage]["addressTitle"];
-    //     }
-    //   }
-    // },
-    // checkDynamicTranslations() {
-    //   var myMultiLocalizableElements = document.getElementsByClassName(
-    //     "addressmultilocalizable"
-    //   );
-    //   var totalElements = myMultiLocalizableElements.length;
-    //   var i;
-    //   for (i = 0; i < totalElements; i++) {
-    //     var elementName = myMultiLocalizableElements[i].getAttribute("name");
-    //     if (myMultiLocalizableElements[i].getAttribute("localize")) {
-    //       var elementAttribute = myMultiLocalizableElements[i].getAttribute(
-    //         "localize"
-    //       );
-    //       myMultiLocalizableElements[i].setAttribute(
-    //         elementAttribute,
-    //         jsonStrings[this.$selectedLanguage][elementName]
-    //       );
-    //     } else {
-    //       myMultiLocalizableElements[i].innerText =
-    //         jsonStrings[this.$selectedLanguage][elementName];
-    //     }
-    //   }
-    // },
     showOrHideQRCode() {
       this.isShowQRCode = !this.isShowQRCode;
     },
@@ -1589,8 +1509,8 @@ module.exports = {
       var decimals = BigNumber("1e+" + decimals);
       return amount
         .div(decimals)
-        .toFormat()
-        .shortAmount();
+        .toFormat();
+        // .shortAmount();
     },
     toShortStr(s) {
       if (s.length > 20) {
@@ -1691,21 +1611,6 @@ module.exports = {
       this.nav(n);
     }
   },
-//   mounted() {
-//     EventBus.$on("changeLanguage", foo => {
-//       this.checkStaticTranslations();
-//     });
-//     if (typeof this.$selectedLanguage != "undefined") {
-//       this.checkStaticTranslations();
-//     }
-//     this.translationsInterval = setInterval(() => {
-//       this.checkDynamicTranslations();
-//     }, 1000);
-//     this.tempInterval = setInterval(() => {
-//       this.checkStaticTranslations();
-//       //this.removeTempInterval();
-//     }, 1000);
-//   },
   watch: {
     tab: function(newTab, oldTab) {
       if (!this.isContract && newTab == 2 && this.nrc20TxList.length === 0) {
