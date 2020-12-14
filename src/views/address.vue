@@ -1014,8 +1014,7 @@
               <th>{{ $t("addressTableAge3") }}</th>
               <th>{{ $t("addressTableBlock3") }}</th>
               <th style="width: 25%;">
-
-                {{ $t("addressTableSource") }}
+                {{ $t("addressTableTxHash") }}
               </th>
             </tr>
             <tr
@@ -1070,7 +1069,7 @@
                     v-bind:to="fragApi + '/tx/' + o.txHash"
                     class="ml-2"
                   >
-                    <span>tx#
+                    <span>
                       {{
                         o.txHash.slice(0, 6) +
                           "..." +
