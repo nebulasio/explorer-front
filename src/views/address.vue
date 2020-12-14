@@ -1066,7 +1066,6 @@
                   {{ $t("addressPledgeRewards") }}
                 </div>
                 <div v-if="o.source === 1">
-                  <span>NAX Vote</span>
                   <router-link
                     v-bind:to="fragApi + '/tx/' + o.txHash"
                     class="ml-2"
