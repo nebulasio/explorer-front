@@ -302,7 +302,7 @@
             </a>
           </div>
 
-          <small class="copyright">Copyright 2017 - 2020</small>
+          <small class="copyright">Copyright 2017 - 2021</small>
         </div>
       </div>
     </div>
